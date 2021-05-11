@@ -39,7 +39,7 @@
 #define BLO_COSINE	6
 #define BLO_PULSE	7
 
-struct bristolBLO {
+typedef struct bristolBLO {
 	int flags;
 	int harmonics;
 	int cutin;
@@ -47,7 +47,7 @@ struct bristolBLO {
 	int min;
 	float fraction;
 	float samplerate;
-};
+} bristolBLO;
 
 GLOBAL_STATE extern struct bristolBLO blo;
 
@@ -57,6 +57,18 @@ GLOBAL_STATE extern float bloramp[BRISTOL_BLO_SIZE];
 GLOBAL_STATE extern float blosaw[BRISTOL_BLO_SIZE];
 GLOBAL_STATE extern float blotriangle[BRISTOL_BLO_SIZE];
 GLOBAL_STATE extern float blopulse[BRISTOL_BLO_SIZE];
+=======
+	float *sine;
+	float *cosine;
+	float *square;
+	float *ramp;
+	float *saw;
+	float *triangle;
+	float *pulse;
+} bristolBLO;
+
+extern bristolBLO blo;
+>>>>>>> 3d9a322 (bristol: Expand BLO object and declare it with external linkage)
 
 extern void generateBLOwaveforms(int, float, int, float, int, float, int);
 extern void generateBLOwaveform(int, float *, float, int);

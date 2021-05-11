@@ -392,10 +392,10 @@ register double reach)
 {
 	register int i;
 
-	if (bloflags & BRISTOL_BLO)
+	if (blo.flags & BRISTOL_BLO)
 	{
 		for (i = 0; i < count; i++)
-			mem[i] = blotriangle[i];
+			mem[i] = blo.triangle[i];
 		return;
 	}
 }
@@ -562,7 +562,7 @@ fillVoxWave(bristolOP *operator, int form)
 			source = specs->wave[0];
 			gain = ((float) (wavelevel[i] * wavelevel[4])) / 64.0;
 		} else {
-			source = blotriangle;
+			source = blo.triangle;
 			gain = ((float) (wavelevel[i] * wavelevel[4])) / 3.0;
 		}
 
@@ -625,7 +625,7 @@ fillVoxWave(bristolOP *operator, int form)
 			source = specs->wave[0];
 			gain = ((float) (wavelevel[3] * wavelevel[4])) / 64.0;
 		} else {
-			source = blotriangle;
+			source = blo.triangle;
 			gain = ((float) (wavelevel[3] * wavelevel[4])) / 3.0;
 		}
 
