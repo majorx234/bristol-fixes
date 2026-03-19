@@ -41,8 +41,8 @@ extern int bristolMidiRawWrite(int, struct bristolMidiMsg *, int);
 extern int bristolMidiWrite(int, struct bristolMsg *, int);
 
 extern void bristolMidiPrint(struct bristolMidiMsg *);
-extern void bristolMsgPrint();
-extern void bristolMidiPrintGM2();
+extern void bristolMsgPrint(struct bristolMsg *);
+extern void bristolMidiPrintGM2(struct bristolMidiMsg *);
 
 #define MIDI_CONTROLLER_COUNT 128
 #define CONTROLLER_RANGE 16384

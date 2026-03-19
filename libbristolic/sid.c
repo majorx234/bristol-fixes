@@ -134,8 +134,8 @@
 #include "bristolsid.h"
 #include "bristol.h"
 
-extern void * bristolmalloc();
-extern void bristolfree();
+extern void * bristolmalloc(size_t);
+extern void bristolfree(void*);
 
 #define B_SID_RAMP		0
 #define B_SID_TRI		1

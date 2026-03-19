@@ -30,8 +30,8 @@
 #include "bristol.h"
 #include "bristolmidi.h"
 
-extern int acceptConnection();
-extern int bristolMidiDevRead();
+extern int acceptConnection(int);
+extern int bristolMidiDevRead(int,  bristolMidiMsg *);
 extern int checkcallbacks();
 
 int midiMode;

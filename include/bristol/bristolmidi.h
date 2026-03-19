@@ -174,7 +174,7 @@ extern void bristolMidiRegisterForwarder(int (*)(bristolMidiMsg *));
 
 
 extern char *getBristolCache(char *);
-extern void resetBristolCache();
+extern void resetBristolCache(char *);
 #define NO_INTERPOLATE 0x01
 extern int bristolGetMap(char *, char *, float *, int, int);
 extern int bristolGetFreqMap(char *, char *, fTab *, int, int, int);
