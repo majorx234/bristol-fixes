@@ -33,7 +33,7 @@
 #include "bristolmemorymoog.h"
 
 extern int buildCurrentTable(Baudio *, float);
-
+extern void doPitchWheel(Baudio *);
 /*
  * Use of these memorymoog global buffers will be an issue with use of multiple
  * audio threads, unless we ensure a single thread deals with any given algo

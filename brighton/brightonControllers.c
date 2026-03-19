@@ -46,6 +46,9 @@ extern void brightonGetCLIcodes(int);
 
 //static int width = 0, height = 0;
 
+// forward declaration
+int addInAndOutKeysToKeymapFilter(BRIGHTON_MAP_BASE_TYPE in, BRIGHTON_MAP_BASE_TYPE out, brightonKeymapFilter* filter);
+
 /*
  * kbdmap now buried in the brightonWindow structure.
  *
