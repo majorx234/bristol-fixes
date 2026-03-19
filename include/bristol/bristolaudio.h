@@ -25,7 +25,7 @@
 struct audioMain;
 
 extern int bristolAudioOpen();
-extern void initAudioThread();
+extern void initAudioThread(struct audioMain*);
 extern int bristolAudioWrite();
 extern int bristolAudioStart();
 extern int bristolAudioRead();

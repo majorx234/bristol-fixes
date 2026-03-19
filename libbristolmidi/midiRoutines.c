@@ -65,8 +65,7 @@ bristolMidiFindDev(char *name)
 	return(BRISTOL_MIDI_DEVICE);
 }
 
-int
-bristolMidiDevSanity(int dev)
+int bristolMidiDevSanity(int dev)
 {
 #ifdef DEBUG
 	printf("bristolMidiDevSanity(%i)\n", dev);
@@ -102,9 +101,7 @@ int handle;
 	printf("		hcount: %i\n", bmidi.dev[bmidi.handle[handle].dev].handleCount);
 }
 
-int
-bristolMidiSanity(handle)
-int handle;
+int bristolMidiSanity(int handle)
 {
 #ifdef DEBUG
 	printf("bristolMidiSanity(%i)\n", handle);

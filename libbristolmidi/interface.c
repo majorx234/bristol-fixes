@@ -38,36 +38,37 @@
 
 bristolMidiMain bmidi;
 
-extern int bristolMidiFindDev();
+extern int bristolMidiFindDev(char *);
 extern int bristolMidiFindFreeHandle();
 
-extern int bristolMidiTCPOpen();
-extern int bristolMidiOSSOpen();
-extern int bristolMidiALSAOpen();
-extern int bristolMidiSeqOpen();
-extern int bristolMidiSeqKeyEvent();
-extern int bristolMidiSeqPressureEvent();
-extern int bristolMidiSeqPPressureEvent();
-extern int bristolMidiSeqCCEvent();
+extern int bristolMidiTCPOpen(char *, int, int, int, int (*)(), void *, int, int);
+extern int bristolMidiOSSOpen(char *, int, int, int, int (*)(), void *, int, int);
+extern int bristolMidiALSAOpen(char*, int, int, int, int (*)(), void *, int, int);
+extern int bristolMidiSeqOpen(char *, int, int, int, int (*)(), void *, int, int);
+extern int bristolMidiSeqKeyEvent(int, int, int, int, int);
+extern int bristolMidiSeqPressureEvent(int, int, int, int);
+extern int bristolMidiSeqPPressureEvent(int, int, int, int, int);
+extern int bristolMidiSeqCCEvent(int, int, int, int, int);
 #ifdef _BRISTOL_JACK_MIDI
-extern int bristolMidiJackOpen();
+extern int bristolMidiJackOpen(char *, int, int, int,
+int (*)(), void *, int, int);
 #endif
 
-extern int bristolMidiTCPClose();
-extern int bristolMidiOSSClose();
-extern int bristolMidiALSAClose();
-extern int bristolMidiSeqClose();
+extern int bristolMidiTCPClose(int);
+extern int bristolMidiOSSClose(int);
+extern int bristolMidiALSAClose(int);
+extern int bristolMidiSeqClose(int);
 #ifdef _BRISTOL_JACK_MIDI
-extern int bristolMidiJackClose();
+extern int bristolMidiJackClose(int);
 #endif
 
-extern int bristolMidiSanity();
-extern int bristolMidiDevSanity();
-extern int bristolMidiALSARead();
-extern int bristolMidiSeqRead();
-extern int bristolPhysWrite();
+extern int bristolMidiSanity(int);
+extern int bristolMidiDevSanity(int);
+extern int bristolMidiALSARead(int, bristolMidiMsg *);
+extern int bristolMidiSeqRead(int, bristolMidiMsg *);
+extern int bristolPhysWrite(int, unsigned char *, int);
 
-extern int initMidiLib();
+extern int initMidiLib(int);
 
 static char devname[64] = "localhost";
 
@@ -200,7 +201,7 @@ printf("reusing connection %x\n", bmidi.dev[devnum].flags);
 		case BRISTOL_CONN_JACK:
 #ifdef _BRISTOL_JACK_MIDI
 			if (handle != bristolMidiJackOpen(dev, flags,
-				chan, msgs, callback, devnum, devnum, handle))
+				chan, msgs, callback, NULL, devnum, handle))
 			{
 				bmidi.dev[devnum].state = -1;
 				bmidi.handle[handle].state = -1;
@@ -695,8 +696,8 @@ bristolKeyEvent(int handle, int op, int channel, int key, int velocity)
 				op, channel, key, velocity));
 		default:
 			bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, &comm, 1);
-			bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, &key, 1);
-			bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, &velocity, 1);
+			bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, (unsigned char*)&key, 1);
+			bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, (unsigned char*)&velocity, 1);
 			break;
 	}
 
@@ -725,8 +726,8 @@ bristolPolyPressureEvent(int handle, int op, int channel, int key, int press)
 				op, channel, key, press));
 		default:
 			bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, &comm, 1);
-			bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, &key, 1);
-			bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, &press, 1);
+			bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, (unsigned char*)&key, 1);
+			bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, (unsigned char*)&press, 1);
 	}
 
 	return(0);
@@ -753,7 +754,7 @@ bristolPressureEvent(int handle, int op, int channel, int press)
 				op, channel, press));
 		default:
 			bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, &comm, 1);
-			bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, &press, 1);
+			bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, (unsigned char*)&press, 1);
 	}
 
 	return(0);
@@ -774,8 +775,8 @@ bristolMidiSendControlMsg(int handle, int channel, int ctrl, int value)
 	/* printf("control event %i %i %i\n", channel, ctrl, value); */
 
 	bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, &comm, 1);
-	bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, &ctrl, 1);
-	bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, &value, 1);
+	bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, (unsigned char*)&ctrl, 1);
+	bristolPhysWrite(bmidi.dev[bmidi.handle[handle].dev].fd, (unsigned char*)&value, 1);
 
 	return(0);
 }

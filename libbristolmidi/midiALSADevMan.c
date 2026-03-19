@@ -35,9 +35,9 @@
 /* #define DEBUG */
 
 extern bristolMidiMain bmidi;
-extern int bristolFreeHandle();
-extern int bristolFreeDevice();
-extern int bristolMidiRawToMsg();
+extern int bristolFreeHandle(int);
+extern int bristolFreeDevice(int);
+extern int bristolMidiRawToMsg(unsigned char *, int, int, int, bristolMidiMsg *);
 
 /*
  * This is the ALSA code. Should separate it out already.

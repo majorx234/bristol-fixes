@@ -64,9 +64,7 @@ int		socket_descriptor = -1, recvFlag;
 void	clientCheckSocket();
 
 int
-initControlPort(host, port)
-char	*host;
-int		port;
+initControlPort(char* host, int port)
 {
 struct	sockaddr_in	connect_socket_addr;
 char				hostname[NAME_LENGTH];

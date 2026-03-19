@@ -32,12 +32,12 @@
 struct sockaddr address;
 
 extern bristolMidiMain bmidi;
-extern int bristolMidiTCPPassive();
-int bristolMidiTCPActive();
-extern int bristolMidiFindDev();
-extern int initControlPort();
-extern int bristolFreeHandle();
-extern int bristolFreeDevice();
+extern int bristolMidiTCPPassive(char *, int, int, int, int (*)(), void *, int, int);
+int bristolMidiTCPActive(char *, int, int, int,int (*)(), void *, int, int);
+extern int bristolMidiFindDev(char *);
+extern int initControlPort(char*. int);
+extern int bristolFreeHandle(int);
+extern int bristolFreeDevice(int);
 
 extern void checkcallbacks(bristolMidiMsg *);
 

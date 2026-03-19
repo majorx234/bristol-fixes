@@ -32,13 +32,15 @@
 
 #include "bristolmessages.h"
 
-extern int bristolMidiOpen();
-extern int bristolMidiClose();
-extern int bristolMidiRead();
-extern int bristolMidiRawWrite();
-extern int bristolMidiWrite();
+struct bristolMidiMsg;
 
-extern void bristolMidiPrint();
+extern int bristolMidiOpen(char*, int, int, int, int(*)(), void*);
+extern int bristolMidiClose(int);
+extern int bristolMidiRead(int, struct bristolMidiMsg *);
+extern int bristolMidiRawWrite(int, struct bristolMidiMsg *, int);
+extern int bristolMidiWrite(int, struct bristolMsg *, int);
+
+extern void bristolMidiPrint(struct bristolMidiMsg *);
 extern void bristolMsgPrint();
 extern void bristolMidiPrintGM2();
 
@@ -205,7 +207,7 @@ typedef struct ProgMsg {
 	unsigned char p_id;
 } programMsg;
 
-typedef struct BristolMidiMsg {
+typedef struct bristolMidiMsg {
 	unsigned char midiHandle;
 	unsigned char channel;
 	unsigned char mychannel;

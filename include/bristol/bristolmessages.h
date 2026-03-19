@@ -36,7 +36,7 @@
  * We will either require ALL codes are 7 bits only, or will put in an 
  * encoder.
  */
-typedef struct BristolMsg {
+typedef struct bristolMsg {
 	u_char SysID; /* How about "83"? hex 'S' - or find a free one from net */
 	u_char L; /* hex 76 - some more bytes of ID! */
 	u_char a; /* hex 97 */
@@ -57,7 +57,7 @@ typedef struct BristolMsg {
 #define BRISTOL_MT2_WRITE	1
 #define BRISTOL_MT2_READ	2
 
-typedef struct BristolMsgType2 {
+typedef struct bristolMsgType2 {
 	u_char SysID; /* How about "83"? hex 'S' - or find a free one from net */
 	u_char L; /* hex 76 - some more bytes of ID! */
 	u_char a; /* hex 97 */

@@ -346,7 +346,7 @@ audioShim(jack_nframes_t nframes, void *jd)
 }
 
 static void
-bristolIntJackClose()
+bristolIntJackClose(int value)
 {
 	int i;
 
@@ -373,7 +373,7 @@ bristolIntJackClose()
 
 	jack_client_close(jackdev.handle);
 
-	_exit(0);
+	_exit(value);
 }
 
 static int
