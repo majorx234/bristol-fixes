@@ -87,7 +87,7 @@
 #define BRISTOL_CHANSTATE_WAIT_2 2
 #define BRISTOL_CHANSTATE_WAIT_3 3
 
-typedef struct BristolMidiChannel {
+typedef struct bristolMidiChannel {
 	int channel;
 	int handle;
 	int command;
@@ -95,29 +95,29 @@ typedef struct BristolMidiChannel {
 	int count; /* Of current number of bytes for this command */
 } bristolMidiChannel;
 
-typedef struct BristolMidiHandle {
+typedef struct bristolMidiHandle {
 	int handle;
 	int state;
 	int channel;
 	int dev;
 	unsigned int flags;
 	int messagemask;
-	int (*callback)();
+	int (*callback)(bristolMidiMsg*, void*);
 	void *param;
 } bristolMidiHandle;
 
 #if (BRISTOL_HAS_ALSA == 1)
-typedef struct BristolALSADev {
+typedef struct bristolALSADev {
 	snd_rawmidi_t *handle; /* ALSA driver handle */
 //	snd_seq_t *seq_handle;
 } bristolALSADev;
 
-typedef struct BristolSeqDev {
+typedef struct bristolSeqDev {
 	snd_seq_t *handle; /* ALSA driver handle */
 } bristolSeqDev;
 #endif /* BRISTOL_HAS_ALSA */
 
-typedef struct BristolMidiDev {
+typedef struct bristolMidiDev {
 	char name[64];
 	int state;
 	unsigned int flags;
@@ -148,12 +148,12 @@ typedef struct BristolMidiDev {
 	bristolMidiMsg msg;
 } bristolMidiDev;
 
-typedef struct BristolMidiMain {
+typedef struct bristolMidiMain {
 	unsigned int flags;
 	unsigned int SysID;
 	bristolMidiDev dev[BRISTOL_MIDI_DEVCOUNT];
 	bristolMidiHandle handle[BRISTOL_MIDI_HANDLES];
-	int (*msgforwarder)();
+	int (*msgforwarder)(bristolMidiMsg *);
 /*	int GM2values[128][16]; // Values all controllers by channel */
 /*	int mapping[128][16]; // default MIDI controller mapping table. */
 } bristolMidiMain;
@@ -170,7 +170,7 @@ extern int bristolMidiSendKeyMsg(int, int, int, int, int);
 extern int bristolMidiControl(int, int, int, int, int);
 
 extern int bristolMidiOption(int, int, int);
-extern void bristolMidiRegisterForwarder(int (*)());
+extern void bristolMidiRegisterForwarder(int (*)(bristolMidiMsg *));
 
 
 extern char *getBristolCache(char *);

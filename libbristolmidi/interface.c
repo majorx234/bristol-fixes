@@ -41,17 +41,16 @@ bristolMidiMain bmidi;
 extern int bristolMidiFindDev(char *);
 extern int bristolMidiFindFreeHandle();
 
-extern int bristolMidiTCPOpen(char *, int, int, int, int (*)(), void *, int, int);
-extern int bristolMidiOSSOpen(char *, int, int, int, int (*)(), void *, int, int);
-extern int bristolMidiALSAOpen(char*, int, int, int, int (*)(), void *, int, int);
-extern int bristolMidiSeqOpen(char *, int, int, int, int (*)(), void *, int, int);
+extern int bristolMidiTCPOpen(char *, int, int, int, int (*)(bristolMidiMsg*, void*), void *, int, int);
+extern int bristolMidiOSSOpen(char *, int, int, int, int (*)(bristolMidiMsg*, void*), void *, int, int);
+extern int bristolMidiALSAOpen(char*, int, int, int, int (*)(bristolMidiMsg*, void*), void *, int, int);
+extern int bristolMidiSeqOpen(char *, int, int, int, int (*)(bristolMidiMsg*, void*), void *, int, int);
 extern int bristolMidiSeqKeyEvent(int, int, int, int, int);
 extern int bristolMidiSeqPressureEvent(int, int, int, int);
 extern int bristolMidiSeqPPressureEvent(int, int, int, int, int);
 extern int bristolMidiSeqCCEvent(int, int, int, int, int);
 #ifdef _BRISTOL_JACK_MIDI
-extern int bristolMidiJackOpen(char *, int, int, int,
-int (*)(), void *, int, int);
+extern int bristolMidiJackOpen(char *, int, int, int, int (*)(bristolMidiMsg*, void*), void *, int, int);
 #endif
 
 extern int bristolMidiTCPClose(int);
@@ -76,7 +75,7 @@ static char devname[64] = "localhost";
  * This is the generic code. Calls the desired (configured) drivers.
  */
 int
-bristolMidiOpen(char *dev, int flags, int chan, int msgs, int (*callback)(),
+bristolMidiOpen(char *dev, int flags, int chan, int msgs, int (*callback)(bristolMidiMsg*, void*),
 void *param)
 {
 	int handle, devnum;
@@ -234,8 +233,7 @@ printf("returning handle %i, flags %x, fd %i\n", handle, bmidi.dev[devnum].flags
 	return(handle);
 }
 
-void
-bristolMidiRegisterForwarder(int (*msgforwarder)())
+void bristolMidiRegisterForwarder(int (*msgforwarder)(bristolMidiMsg *))
 {
 	if (bmidi.flags & BRISTOL_BMIDI_DEBUG)
 		printf("register message forwarder\n");
