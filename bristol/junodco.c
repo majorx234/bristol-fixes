@@ -39,7 +39,7 @@
 #include "bristolblo.h"
 #include "junodco.h"
 
-static float note_diff;
+GLOBAL_STATE static float note_diff;
 
 #define BRISTOL_SQR 8
 
