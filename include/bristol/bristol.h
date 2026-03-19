@@ -622,7 +622,7 @@ typedef struct BAudio {
 	} notemap;
 } Baudio;
 
-typedef struct AudioMain {
+typedef struct audioMain {
 	Baudio *audiolist;
 	bristolVoice *playlist;
 	bristolVoice *playlast;
@@ -688,9 +688,9 @@ extern int bufmerge(float *, float, float *, float, int);
 extern int bufadd(float *, float, int);
 extern int bufset(float *, float, int);
 
-extern void * bristolmalloc();
-extern void * bristolmalloc0();
-extern void bristolfree();
+extern void * bristolmalloc(size_t);
+extern void * bristolmalloc0(size_t);
+extern void bristolfree(void *);
 extern void bristolbzero();
 
 extern void alterAllNotes();

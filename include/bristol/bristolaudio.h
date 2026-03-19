@@ -18,6 +18,11 @@
  *   along with this program; if not, see <http://www.gnu.org/licenses/>.
  *
  */
+#ifndef BRISTOLAUDIO_H_
+#define BRISTOLAUDIO_H_
+
+//#include "bristol.h"
+struct audioMain;
 
 extern int bristolAudioOpen();
 extern void initAudioThread();
@@ -25,8 +30,9 @@ extern int bristolAudioWrite();
 extern int bristolAudioStart();
 extern int bristolAudioRead();
 extern int bristolAudioClose();
-extern int doAudioOps();
+extern int doAudioOps(struct audioMain *, float *, float*);
 extern void freeSoundAlgo();
 
 extern int bristolOPprint();
 
+#endif

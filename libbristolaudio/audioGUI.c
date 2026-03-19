@@ -54,9 +54,9 @@ static char *SLAB_CONVERT_LABELS[32] =	\
 extern int setAudioOSSparam(duplexDev *, int, int, int, int);
 extern int checkAudioOSScaps(duplexDev *, int, int);
 extern char * getOSSName(int);
-extern int getOSSRecordability();
-extern int getOSSCapByName();
-extern int getOSSCapability();
+extern int getOSSRecordability(duplexDev*, int);
+extern int getOSSCapByName(duplexDev *, char *);
+extern int getOSSCapability(duplexDev *, int);
 
 #if (BRISTOL_HAS_ALSA == 1)
 extern int setAudioALSAparam(duplexDev *, int, char *, int, int);
@@ -66,16 +66,16 @@ extern int openALSAmixer(duplexDev *);
 extern char * getAlsaName(duplexDev *, int);
 extern int validAlsaDev(duplexDev *, int);
 
-extern int setAlsaRecordSource();
-extern int getAlsaRecordability();
-extern int getAlsaMutability();
-extern int getAlsaStereoStatus();
-extern int getAlsaValue();
-extern int setAlsaValue();
-extern int setAlsaMute();
+extern int setAlsaRecordSource(duplexDev *, int ,int);
+extern int getAlsaRecordability(duplexDev *, int);
+extern int getAlsaMutability(duplexDev *, int);
+extern int getAlsaStereoStatus(duplexDev *, int);
+extern int getAlsaValue(duplexDev *, int, int);
+extern int setAlsaValue(duplexDev *, int, int, int);
+extern int setAlsaMute(duplexDev *, int, int);
 extern int getAlsaDeviceName();
-extern int getAlsaCapByName();
-extern int getAlsaCapability();
+extern int getAlsaCapByName(duplexDev *, char *);
+extern int getAlsaCapability(duplexDev *, int);
 #endif
 
 /*

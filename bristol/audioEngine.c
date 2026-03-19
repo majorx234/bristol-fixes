@@ -1,4 +1,3 @@
-
 /*
  *  Diverse Bristol audio routines.
  *  Copyright (c) by Nick Copeland <nickycopeland@hotmail.com> 1996,2012

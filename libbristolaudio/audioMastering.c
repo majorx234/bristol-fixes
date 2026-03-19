@@ -102,8 +102,8 @@ static int d;
 #include <unistd.h>
 
 static void writeWaveHdr(duplexDev *, int, int);
-static void cdrFormat();
-static void cdrPad();
+static void cdrFormat(char*, int);
+static void cdrPad(int fd, int size);
 
 /*
  * Note that the count parameter is the current songlength. This is only needed
