@@ -22,26 +22,34 @@
 #ifndef BRIGHTONDEV_H
 #define BRIGHTONDEV_H
 
-typedef struct BrightonILocations {
+struct brightonBitmap;
+struct brightonWindow;
+struct brightonIResource;
+typedef int (*brightonCallback)(struct brightonWindow *, int, int, float);
+//typedef int (*brightonRoutine)(struct brightonWindow *, struct brightonIResource*, struct brightonEvent*);
+typedef int (*brightonRoutine)(struct brightonWindow *, struct brightonEvent*);
+typedef int (*brightonRoutine2)(struct brightonWindow *, struct brightonIResource*, struct brightonEvent*);
+
+typedef struct brightonILocations {
 	int type;
 	int index, panel;
 	float x, y, width, height;
 	int ax, ay, aw, ah;
 	float from, to;
 	brightonCallback callback;
-	brightonBitmap *image;
-	brightonBitmap *image2;
+	struct brightonBitmap *image;
+	struct brightonBitmap *image2;
 	unsigned int flags;
 	struct brightonDevice *dev;
 } brightonILocations;
 
 typedef struct brightonIResource {
-	brightonBitmap *image;
-	brightonBitmap *surface;
-	brightonBitmap *canvas;
+	struct brightonBitmap *image;
+	struct brightonBitmap *surface;
+	struct brightonBitmap *canvas;
 	unsigned int flags;
 	brightonRoutine init;
-	brightonRoutine configure;
+	brightonRoutine2 configure;
 	brightonCallback callback;
 	int x, y, width, height;
 	int sx, sy, sw, sh;
@@ -49,7 +57,7 @@ typedef struct brightonIResource {
 	brightonILocations *devlocn;
 } brightonIResource;
 
-typedef struct BrightonIApp {
+typedef struct brightonIApp {
 	unsigned int flags;
 	brightonRoutine init;
 	int width, height;

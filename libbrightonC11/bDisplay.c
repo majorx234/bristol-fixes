@@ -19,6 +19,7 @@
  *
  */
 
+#include <string.h>
 #include "brightonC11internals.h"
 
 bdisplay *displays;

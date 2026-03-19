@@ -27,7 +27,7 @@
 #include "brightoninternals.h"
 
 int
-destroyHammond(brightonDevice *dev)
+destroyHammond(brightonDevice *dev, brightonEvent *e)
 {
 	printf("destroyHammond()\n");
 

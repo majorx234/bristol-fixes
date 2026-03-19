@@ -30,14 +30,16 @@
 
 #include <config.h>
 
+#include <unistd.h>
+
+#include <config.h>
+
 #include "brightondevflags.h"
 #include "brightonevents.h"
 
-struct BrightonWindow;
-typedef int (*brightonRoutine)();
-typedef int (*brightonCallback)(struct BrightonWindow *, int, int, float);
+#include "brightondev.h"
 
-typedef struct BrightonLocations {
+typedef struct brightonLocations {
 	char *name;
 	int device;
 	float x, y;
@@ -98,12 +100,13 @@ typedef struct BrightonApp {
 	brightonResource resources[RESOURCE_COUNT];
 } brightonApp;
 
-extern int brightonRemoveInterface(struct BrightonWindow *);
-extern int brightonParamChange(struct BrightonWindow *, int, int, brightonEvent *);
-extern int brightonOpacity(struct BrightonWindow *, float);
-extern int brightonColorQuality(struct BrightonWindow *, int);
-extern struct BrightonWindow *brightonInterface(brightonApp *, int, int, int, float, int, int, int);
-extern void brightonLogo(struct BrightonWindow *);
+extern int brightonRemoveInterface(struct brightonWindow *);
+extern int brightonParamChange(struct brightonWindow *, int, int, brightonEvent *);
+extern int brightonOp(struct brightonWindow *, struct brightonIResource*, struct brightonEvent*);
+extern int brightonOpacity(struct brightonWindow *, float);
+extern int brightonColorQuality(struct brightonWindow *, int);
+extern struct brightonWindow *brightonInterface(brightonApp *, int, int, int, float, int, int, int);
+extern void brightonLogo(struct brightonWindow *);
 extern int brightonEventMgr();
 
 #endif /* BRIGHTON_H */

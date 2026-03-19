@@ -115,7 +115,7 @@ brightonDestroyDevice(brightonDevice *device)
 	brightonDestroyDevices(device);
 
 	if (device->destroy)
-		device->destroy(device);
+		device->destroy(device, NULL);
 
 	if (device->next)
 		device->next->last = device->last;
@@ -164,9 +164,7 @@ brightonSendEvent(brightonWindow* bwin, int panel, int index, brightonEvent *eve
 /*
  * This will make the GUI reflect the new value being given.
  */
-int
-brightonParamChange(brightonWindow *bwin, int panel, int index,
-brightonEvent *event)
+int brightonParamChange(brightonWindow *bwin, int panel, int index, brightonEvent *event)
 {
 	char *image = "bitmaps/images/cable.xpm";
 
@@ -345,7 +343,7 @@ brightonEvent *event)
 	if (index == -1)
 	{
 		if (bwin->app->resources[panel].configure)
-			bwin->app->resources[panel].configure
+			bwin->app->resources[panel].configure//(bwin, event);
 				(bwin, &bwin->app->resources[panel], event);
 
 	} else

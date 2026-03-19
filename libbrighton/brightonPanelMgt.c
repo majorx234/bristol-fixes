@@ -63,9 +63,7 @@ int w, int h)
 	return(0);
 }
 
-void
-brightonPanelLocation(brightonWindow *bwin, int panel, int index,
-int x, int y, int width, int height)
+void brightonPanelLocation(brightonWindow *bwin, int panel, int index, int x, int y, int width, int height)
 {
 	bwin->app->resources[panel].devlocn[index].ax = x;
 	bwin->app->resources[panel].devlocn[index].ay = y;
@@ -75,9 +73,7 @@ int x, int y, int width, int height)
 
 static brightonILocations *ldid = 0;
 
-static int
-configurePanel(brightonWindow *bwin, brightonIResource *panel,
-	brightonEvent *event)
+static int configurePanel(brightonWindow *bwin, brightonIResource *panel, brightonEvent *event)
 {
 	int dev;
 	brightonILocations *device;

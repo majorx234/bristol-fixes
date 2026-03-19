@@ -80,7 +80,7 @@ typedef struct BrightonShadow {
 #define BRIGHTON_INACTIVE_COLOR 0x01
 #define BRIGHTON_QR_QSIZE 128
 #define BRIGHTON_QR_COLORS 24
-typedef struct BrightonPalette {
+typedef struct brightonPalette {
 	unsigned int flags;
 	int uses;
 	unsigned short red, green, blue;
@@ -93,9 +93,9 @@ typedef struct BrightonPalette {
  * Flags are for preferred rendering.
 #define BRIGHTON_ANTIALIAS 0x01
  */
-typedef struct BrightonBitmap {
+typedef struct brightonBitmap {
 	unsigned int flags;
-	struct BrightonBitmap *next, *last;
+	struct brightonBitmap *next, *last;
 	int uses;
 	char *name;
 	int width, height, ncolors, ctabsize, istatic, ostatic;
@@ -122,7 +122,7 @@ typedef struct BrightonPanel {
 	brightonBitmap *surface;
 	brightonBitmap *canvas; /* surface overlaid with image */
 	brightonResource *resource;
-	struct BrightonDevice **devices;
+	struct brightonDevice **devices;
 	brightonSize *locations;
 	int activedev;
 } brightonPanel;
@@ -144,7 +144,7 @@ typedef struct BrightonDisplay {
 	brightonPalette *palette;
 	void *display; /* this type depends on underlying window system */
 	void *image; /* this type depends on underlying window system */
-	struct BrightonWindow *bwin;
+	struct brightonWindow *bwin;
 	char name[BRIGHTON_NAMESIZE];
 	int width, height, depth;
 } brightonDisplay;
@@ -174,7 +174,7 @@ typedef struct BrightonDisplay {
 #define BRIGHTON_LAYER_PUT		0x01
 #define BRIGHTON_LAYER_PLACE	0x02
 #define BRIGHTON_LAYER_ALL		0x04
-typedef struct BrightonLayerItem {
+typedef struct brightonLayerItem {
 	int flags;
 	int id;
 	brightonBitmap *image;
@@ -184,7 +184,7 @@ typedef struct BrightonLayerItem {
 	int scale;
 } brightonLayerItem;
 
-typedef struct BrightonNRPcontrol {
+typedef struct brightonNRPcontrol {
 	int nrp;
 	struct brightonDevice *device;
 } brightonNRPcontrol;
@@ -196,16 +196,16 @@ typedef struct BrightonNRPcontrol {
 #define BRIGHTON_INVALID_KEYMAP_FILTER -1
 #define BRIGHTON_INVALID_INPUT_KEY -2
 #define BRIGHTON_INVALID_OUTPUT_KEY -3
-typedef struct BrightonKeymapFilter
+typedef struct brightonKeymapFilter
 {
 	BRIGHTON_MAP_BASE_TYPE* keyin;
 	BRIGHTON_MAP_BASE_TYPE* keyout;
 	int size;
 } brightonKeymapFilter;
 
-typedef struct BrightonWindow {
+typedef struct brightonWindow {
 	unsigned int flags;
-	struct BrightonWindow *next, *last;
+	struct brightonWindow *next, *last;
 	brightonDisplay *display;
 	brightonBitmap *image;
 	brightonBitmap *surface;
@@ -256,21 +256,21 @@ typedef struct BrightonWindow {
 	int nrpcount;
 	brightonNRPcontrol *nrpcontrol; //[BRIGHTON_NRP_COUNT];
 	/* CC value mapping tables */
-	u_char valuemap[128][128];
+	unsigned char valuemap[128][128];
 	int kbdmap[256][2];
 	brightonKeymapFilter* filter;
 	int dcTimeout;
 } brightonWindow;
 
-typedef int (*brightonDeviceAlgo)();
-
+typedef int (*brightonDeviceAlgo)(struct brightonDevice *, brightonEvent *);
+typedef int (*brightonDeviceAlgo2)(struct brightonDevice *, brightonIResource*, brightonEvent *);
 /*
  * Global structure for any given renderable object.
  */
 #define BRIGHTON_DEV_INITED 0x01
-typedef struct BrightonDevice {
+typedef struct brightonDevice {
 	unsigned int flags;
-	struct BrightonDevice *next, *last;
+	struct brightonDevice *next, *last;
 	int device; /* device type. 0=rotary, etc. */
 	int index; /* index of this instance */
 	int panel; /* parent panel of this instance */

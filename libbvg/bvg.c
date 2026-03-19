@@ -17,6 +17,7 @@
 #include <brightoninternals.h>
 
 #include <font1.h>
+#include <string.h>
 
 #ifndef ANDROID_COLORS
 static brightonWindow *bwin;

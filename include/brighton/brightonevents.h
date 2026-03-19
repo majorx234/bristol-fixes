@@ -73,9 +73,9 @@ typedef struct BrightonSize {
 /*
  * This is an oversimplified conversion of the XEvent structure for brighton use
  */
-typedef struct BrightonEvent {
+typedef struct brightonEvent {
 	unsigned int flags;
-	struct BrightonEvent *next;
+	struct brightonEvent *next;
 	int wid;
 	int type;
 	int command;

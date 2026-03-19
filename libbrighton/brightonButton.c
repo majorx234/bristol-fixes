@@ -29,10 +29,9 @@
 
 #include "brightoninternals.h"
 
-extern int brightonPanelLocation();
+extern int brightonPanelLocation(brightonWindow *, int, int, int, int, int, int);
 
-int
-destroyButton(brightonDevice *dev)
+int destroyButton(brightonDevice *dev, brightonEvent *e)
 {
 	printf("destroyButton()\n");
 
@@ -46,8 +45,7 @@ destroyButton(brightonDevice *dev)
 	return(0);
 }
 
-static void
-displaybutton(brightonDevice *dev)
+static void displaybutton(brightonDevice *dev)
 {
 	int flags = dev->bwin->app->resources[dev->panel].devlocn[dev->index].flags;
 
@@ -416,8 +414,7 @@ configure(brightonDevice *dev, brightonEvent *event)
 	return(0);
 }
 
-int *
-createButton(brightonWindow *bwin, brightonDevice *dev, int index, char *bitmap)
+int * createButton(brightonWindow *bwin, brightonDevice *dev, int index, char *bitmap)
 {
 	brightonIResource *panel = &bwin->app->resources[dev->panel];
 

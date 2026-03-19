@@ -22,6 +22,8 @@
 /*
  * This is intended to be a cheap looking LCD display panel.
  */
+
+#include <string.h>
 #include "brightoninternals.h"
 #include "brightonkeymappings.h"
 
@@ -30,7 +32,7 @@
  */
 
 int
-destroyDisplay(brightonDevice *dev)
+destroyDisplay(brightonDevice *dev, brightonEvent *e)
 {
 	printf("destroyDisplay()\n");
 

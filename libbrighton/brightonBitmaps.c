@@ -33,7 +33,7 @@ brightonCreateBitmap(brightonWindow *bwin, int width, int height)
 {
 	brightonBitmap *bitmap;
 
-	bitmap = brightonmalloc((size_t) sizeof(struct BrightonBitmap));
+	bitmap = brightonmalloc((size_t) sizeof(struct brightonBitmap));
 
 	bitmap->width = width;
 	bitmap->height = height;
