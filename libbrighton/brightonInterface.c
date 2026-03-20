@@ -110,7 +110,7 @@ printf("brighton %p %i %i\n", app, app->width, app->height);
 			display->bwin->quality = 8;
 
 		if (app->init)
-			app->init(display->bwin);
+			app->init(display->bwin, NULL);
 
 		((brightonWindow *) display->bwin)->display = display;
 
@@ -149,7 +149,7 @@ printf("brightonRemoveInterface(%p)\n", bwin);
 		return(0);
 
 	if (bwin->template->destroy != 0)
-		bwin->template->destroy(bwin);
+		bwin->template->destroy(bwin, NULL);
 
 	BAutoRepeat(bwin->display, 1);
 	brightonDestroyInterface(bwin);

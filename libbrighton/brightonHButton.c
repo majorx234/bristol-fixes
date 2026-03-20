@@ -27,12 +27,12 @@
 
 #include "brightoninternals.h"
 
-extern int brightonPanelLocation();
+extern int brightonPanelLocation(brightonWindow *, int, int, int, int, int, int);
 
 char  *tbm;
 
 int
-destroyHButton(brightonDevice *dev)
+destroyHButton(brightonDevice *dev, brightonEvent *e)
 {
 	printf("destroyHButton()\n");
 

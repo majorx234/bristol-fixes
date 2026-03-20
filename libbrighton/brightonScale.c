@@ -26,8 +26,7 @@
 
 #include "brightoninternals.h"
 
-int
-destroyScale(brightonDevice *dev)
+int destroyScale(brightonDevice *dev, brightonEvent *e)
 {
 	printf("destroyScale()\n");
 

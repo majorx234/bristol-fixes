@@ -25,7 +25,7 @@
 static float winwidth, winheight;
 
 int
-destroyRibbon(brightonDevice *dev)
+destroyRibbon(brightonDevice *dev, brightonEvent *e)
 {
 	printf("destroyRibbon()\n");
 

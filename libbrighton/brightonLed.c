@@ -23,7 +23,7 @@
 #include "brightonledstates.h"
 
 int
-destroyLed(brightonDevice *dev)
+destroyLed(brightonDevice *dev, brightonEvent *e)
 {
 	printf("destroyLed()\n");
 

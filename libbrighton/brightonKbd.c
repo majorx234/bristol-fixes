@@ -24,8 +24,7 @@
  */
 #include "brightoninternals.h"
 
-int
-destroyKbd(brightonDevice *dev)
+int destroyKbd(brightonDevice *dev, brightonEvent *e)
 {
 	printf("destroyKbd()\n");
 
@@ -37,8 +36,7 @@ destroyKbd(brightonDevice *dev)
 	return(0);
 }
 
-static int
-displayKbd(brightonDevice *dev)
+static int displayKbd(brightonDevice *dev)
 {
 	brightonIResource *panel;
 

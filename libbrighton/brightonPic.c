@@ -24,8 +24,7 @@
  */
 #include "brightoninternals.h"
 
-int
-destroyPic(brightonDevice *dev)
+int destroyPic(brightonDevice *dev, brightonEvent *e)
 {
 	printf("destroyPic()\n");
 
@@ -37,8 +36,7 @@ destroyPic(brightonDevice *dev)
 	return(0);
 }
 
-static int
-displayPic(brightonDevice *dev)
+static int displayPic(brightonDevice *dev)
 {
 	brightonIResource *panel;
 

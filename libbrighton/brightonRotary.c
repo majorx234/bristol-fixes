@@ -33,9 +33,7 @@
 
 extern void brightonPanelLocation(brightonWindow *, int, int, int, int, int, int);
 
-int
-destroyRotary(brightonDevice *dev)
-{
+int destroyRotary(brightonDevice *dev, brightonEvent *e) {
 	printf("destroyRotary()\n");
 
 	if (dev->image)
@@ -45,8 +43,7 @@ destroyRotary(brightonDevice *dev)
 	return(0);
 }
 
-static int
-displayrotary(brightonDevice *dev)
+static int displayrotary(brightonDevice *dev)
 {
 	if (dev->bwin->app->resources[dev->panel].flags & BRIGHTON_WITHDRAWN)
 		return(0);

@@ -27,10 +27,10 @@
 
 #include "brightoninternals.h"
 
-extern int brightonPanelLocation();
+extern int brightonPanelLocation(brightonWindow *, int, int, int, int, int, int);
 
 int
-destroyLedblock(brightonDevice *dev)
+destroyLedblock(brightonDevice *dev, brightonEvent *e)
 {
 	printf("destroyLedblock()\n");
 

@@ -375,8 +375,8 @@ extern int brightonDoFinalRender(brightonWindow *, int, int, int, int);
 
 extern int BAutoRepeat(brightonDisplay *, int);
 
-extern int brightonGetDCTimer();
-extern int brightonDoubleClick();
+extern int brightonGetDCTimer(int);
+extern int brightonDoubleClick(int);
 extern void brightonfree(void *);
 
 extern void brightonRegisterController(brightonDevice *);

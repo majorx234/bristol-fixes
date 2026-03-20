@@ -27,7 +27,7 @@
 static int id = 0;
 brightonWindow *winlist = 0;
 
-extern void clearout();
+extern void clearout(int);
 extern int brightonCloseDisplay(brightonDisplay *);
 extern int BGetGeometry(brightonDisplay *, brightonWindow *);
 

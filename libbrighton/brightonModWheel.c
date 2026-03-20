@@ -27,7 +27,7 @@
 #include "brightoninternals.h"
 
 int
-destroyModWheel(brightonDevice *dev)
+destroyModWheel(brightonDevice *dev, brightonEvent *e)
 {
 	printf("destroyModWheel()\n");
 

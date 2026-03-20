@@ -24,8 +24,7 @@
 static float winwidth, winheight;
 static float sx = -1, sy = -1;
 
-int
-destroyTouch(brightonDevice *dev)
+int destroyTouch(brightonDevice *dev, brightonEvent *e)
 {
 	printf("destroyTouch()\n");
 

@@ -219,7 +219,7 @@ brightonWorldChanged(brightonWindow *bwin, int width, int height)
 	 * world changed.
 	 */
 	if (bwin->template->configure)
-		bwin->template->configure(bwin);
+		bwin->template->configure(bwin, NULL);
 
 	return(0);
 }

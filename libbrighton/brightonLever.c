@@ -26,8 +26,7 @@
 
 #include "brightoninternals.h"
 
-int
-destroyLever(brightonDevice *dev)
+int destroyLever(brightonDevice *dev, brightonEvent *e)
 {
 	printf("destroyLever()\n");
 

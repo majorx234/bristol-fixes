@@ -33,8 +33,7 @@
 
 #include "brightoninternals.h"
 
-int
-destroyVu(brightonDevice *dev)
+int destroyVu(brightonDevice *dev, brightonEvent *e)
 {
 	printf("destroyVu()\n");
 
