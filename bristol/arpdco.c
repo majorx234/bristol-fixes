@@ -65,7 +65,7 @@ GLOBAL_STATE static float *zbuf;
 
 #define DCO_WAVE_COUNT 6
 
-static void fillWave();
+static void fillWave(float *, int,  int);
 
 /*
  * We should not be doing this however I need a quick resolution to some issues
@@ -76,7 +76,7 @@ GLOBAL_STATE static float *sbuf = NULL;
 /*
  * Reset any local memory information.
  */
-static int destroy(bristolOP *operator)
+static int destroy(bristolOP *operator, bristolOPParams *params)
 {
 #ifdef BRISTOL_DBG
 	printf("destroy(%x)\n", operator);

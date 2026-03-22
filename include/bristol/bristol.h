@@ -426,7 +426,9 @@ typedef struct bristolIO {
 	bristolModSpec modifiers; /* MIDI modifiers to streamed input */
 } bristolIO;
 
-typedef int (*bristolAlgo)();
+struct bristolOP;
+struct bristolOPParams;
+typedef int (*bristolAlgo)(struct bristolOP *, struct bristolOPParams *);
 
 /*
  * These are used for templating, not for operational control. We could change
@@ -691,7 +693,7 @@ extern int bufset(float *, float, int);
 extern void * bristolmalloc(size_t);
 extern void * bristolmalloc0(size_t);
 extern void bristolfree(void *);
-extern void bristolbzero(char *, int);
+extern void bristolbzero(void *, int);
 
 extern void alterAllNotes();
 extern int fillFreqTable();

@@ -20,12 +20,11 @@
  */
 
 #include <stdlib.h> /* only for init library */
+#include <string.h>
 
 #include "bristol.h"
 
-void *
-bristolmalloc(size)
-size_t size;
+void *bristolmalloc(size_t size)
 {
 	char *mem;
 
@@ -38,9 +37,7 @@ size_t size;
 	return(mem);
 }
 
-void *
-bristolmalloc0(size)
-size_t size;
+void *bristolmalloc0(size_t size)
 {
 	char *mem;
 
@@ -50,13 +47,12 @@ size_t size;
 	printf("bristolmalloc0: %x, %i\n", mem, size);
 #endif
 
-	bzero(mem, size);
+        memset(mem, 0, size);
 
 	return(mem);
 }
 
-void
-bristolfree(void *mem)
+void bristolfree(void *mem)
 {
 #ifdef DEBUG
 	printf("bristolfree: %x\n", mem);
@@ -70,8 +66,7 @@ bristolfree(void *mem)
 #endif
 }
 
-void
-bristolbzero(char *mem, int count)
+void bristolbzero(void *mem, int count)
 {
 #ifdef DEBUG
 	printf("bristolzero: %x\n", mem);
@@ -80,6 +75,6 @@ bristolbzero(char *mem, int count)
 	if (mem == NULL)
 		return;
 
-	bzero(mem, count);
+        memset(mem, 0, count);
 }
 
