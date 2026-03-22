@@ -314,8 +314,7 @@ static int operate(bristolOP *operator,
  * Setup any variables in our OP structure, in our IO structures, and malloc
  * any memory we need.
  */
-bristolOP *
-dcoinit(bristolOP **operator, int index, int samplerate, int samplecount)
+bristolOP *dcoinit(bristolOP **operator, int index, int samplerate, int samplecount)
 {
 	bristolDCO *specs;
 

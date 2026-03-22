@@ -24,7 +24,8 @@
 //#include "bristol.h"
 struct audioMain;
 struct bristolOP;
-
+struct bAudio;
+struct bristolSound;
 
 extern int bristolAudioOpen(char *, int, int, int);
 extern void initAudioThread(struct audioMain*);
@@ -33,7 +34,7 @@ extern int bristolAudioStart();
 extern int bristolAudioRead(float *, register int);
 extern int bristolAudioClose();
 extern int doAudioOps(struct audioMain *, float *, float*);
-extern void freeSoundAlgo();
+extern void freeSoundAlgo(struct bAudio *, int, struct bristolSound **);
 extern int bristolOPprint(struct bristolOP *);
 
 #endif

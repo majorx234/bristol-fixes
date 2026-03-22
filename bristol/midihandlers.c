@@ -27,11 +27,10 @@
 #include "bristolmidi.h"
 #include "bristolmidieventnames.h"
 
-extern int midiNoteOn();
-extern int midiNoteOff();
-extern void allNotesOff();
-extern void sustainedNotesOff();
-extern void sustainedNotesOff();
+extern int midiNoteOn(audioMain *, bristolMidiMsg *);
+extern int midiNoteOff(audioMain *, bristolMidiMsg *);
+extern void allNotesOff(audioMain *audiomain, int);
+extern void sustainedNotesOff(audioMain *audiomain, int);
 extern int bristolSystem(audioMain *, bristolMidiMsg *);
 
 int buildCurrentTable(bAudio *, float);

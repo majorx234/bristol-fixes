@@ -26,15 +26,15 @@
 #include <bristolmidiapidata.h>
 #include <bristolmidi.h>
 
-extern void inthandler();
-extern void initBristolAudio();
+extern void inthandler(int);
+extern void initBristolAudio(audioMain *, bAudio *);
 #ifdef BRISTOL_PA
-extern int bristolPulseInterface();
+extern int bristolPulseInterface(audioMain*);
 #endif
 #ifdef _BRISTOL_JACK
-extern int bristolJackInterface();
+extern int bristolJackInterface(audioMain *);
 #endif
-extern void allNotesOff();
+extern void allNotesOff(audioMain *, int);
 
 GLOBAL_STATE static int initCount = 0;
 
@@ -344,7 +344,7 @@ bristolSystem(audioMain *audiomain, bristolMidiMsg *msg)
 					bristolMidiSendMsg(msg->params.bristol.from, 0, 127, 0, 1);
 					audiomain->atStatus = BRISTOL_TERM;
 
-					inthandler();
+					inthandler(0);
 
 					return(0);
 				} else {

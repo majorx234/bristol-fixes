@@ -33,11 +33,11 @@
 #include "palette.h"
 
 #ifdef BRISTOL_PA
-extern int bristolPulseInterface();
+extern int bristolPulseInterface(audioMain *);
 #endif
 
 #ifdef _BRISTOL_JACK
-extern int bristolJackInterface();
+extern int bristolJackInterface(audioMain *);
 #endif
 
 /*int atStatus = 0; */
@@ -47,10 +47,10 @@ GLOBAL_STATE extern char *outputfile;
 extern int buildCurrentTable(bAudio *, float);
 extern void initMicrotonalTable(fTab [], int);
 
-static void initPalette();
-static void freePalette();
-static void resetAudioThread();
-static void initMidiVoices();
+static void initPalette(audioMain *, bristolOP **);
+static void freePalette(audioMain *, bristolOP **);
+static void resetAudioThread(audioMain *);
+static void initMidiVoices(audioMain *);
 
 void mapVelocityCurve(int, float []);
 
@@ -1136,7 +1136,7 @@ freePalette(audioMain *audiomain, bristolOP *palette[])
 //printf("Removed operator %s from %i at %x\n",
 //palette[i]->specs->opname, i, (size_t) palette[i]);
 
-			palette[i]->destroy(palette[i]);
+			palette[i]->destroy(palette[i], NULL);
 
 			palette[i] = (bristolOP *) NULL;
 		}

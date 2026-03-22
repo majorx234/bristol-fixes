@@ -36,11 +36,9 @@ extern int bristolGlobalController(struct bAudio *, u_char, u_char, float);
 extern int initthesermon(int, int, int);
 
 GLOBAL_STATE static int sineform = 0, samplecount, samplerate;
-static int operateHammondPostops();
+static int operateHammondPostops(audioMain *, bAudio *, bristolVoice *, register float *);
 
-int
-hammondGlobalController(bAudio *baudio, u_char controller,
-u_char operator, float value)
+int hammondGlobalController(bAudio *baudio, u_char controller, u_char operator, float value)
 {
 	/*
 	 * Hammond global controller code.
@@ -225,9 +223,7 @@ bristolVoice *voice, register float *startbuf)
 	return(0);
 }
 
-int
-operateHammondB3Postops(audioMain *audiomain, bAudio *baudio,
-bristolVoice *voice, register float *startbuf)
+int operateHammondB3Postops(audioMain *audiomain, bAudio *baudio, bristolVoice *voice, register float *startbuf)
 {
 	/*
 	 * Going to have to cheat here. We want to run the postops for the upper
@@ -256,9 +252,7 @@ bristolVoice *voice, register float *startbuf)
 GLOBAL_STATE static float pbHLast;
 GLOBAL_STATE static float pbLLast;
 
-static int
-operateHammondPostops(audioMain *audiomain, bAudio *baudio,
-bristolVoice *voice, register float *startbuf)
+static int operateHammondPostops(audioMain *audiomain, bAudio *baudio, bristolVoice *voice, register float *startbuf)
 {
 	int i, flags, samplecount = audiomain->samplecount;
 	float *hpf;

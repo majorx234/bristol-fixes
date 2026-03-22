@@ -429,6 +429,8 @@ typedef struct bristolIO {
 struct bristolOP;
 struct bristolOPParams;
 typedef int (*bristolAlgo)(struct bristolOP *, struct bristolOPParams *);
+typedef int (*bristolAlgo1)(struct bristolOP *);
+typedef int (*bristolAlgo2)(struct audioMain *, struct bAudio *);
 typedef int (*bristolAlgo4)(struct audioMain *, struct bAudio *, bristolVoice *, float *);
 
 /*
@@ -476,7 +478,7 @@ typedef struct bristolOPSpec {
 #define BRISTOL_SOUND_START 1
 #define BRISTOL_SOUND_END 2
 #define BRISTOL_FX_STEREO 4
-typedef struct BristolSound {
+typedef struct bristolSound {
 	char *name;
 	int index; /* into operator list */
 	int (*operate)(struct bristolOP *, bristolVoice *,
@@ -558,7 +560,7 @@ typedef struct bAudio {
 	bristolAlgo4 preops; /* Pre polyphonic (ie, monophonic) voicing routine */
 	bristolAlgo4 operate; /* Polyphonic voice mixing routine */
 	bristolAlgo4 postops; /* Post polyphonic voicing routine: FX, etc. */
-	bristolAlgo destroy; /* Voice destruction routine */
+	bristolAlgo2 destroy; /* Voice destruction routine */
 	bristolVoice *firstVoice;
 	int debuglevel;
 	/*
@@ -697,7 +699,7 @@ extern void * bristolmalloc0(size_t);
 extern void bristolfree(void *);
 extern void bristolbzero(void *, int);
 
-extern void alterAllNotes(bAudio);
+extern void alterAllNotes(bAudio *);
 extern int fillFreqTable(bAudio *, bristolVoice *, float *, int,  int);
 extern int fillFreqBuf(bAudio *, struct BristolVoice *, float *, int,  int);
 

@@ -41,19 +41,23 @@
 static char defaultcdev[16];
 
 extern int dupfd;
-void inthandler();
+void inthandler(int);
 
 int exitReq = 0;
 static int jh = -1, execreq = 1;
 
-extern void *audioThread();
+extern void *audioThread(audioMain *);
 extern void midiThreadSaveReq(audioMain *);
 extern void midiThreadLoadReq(audioMain *);
-extern void *midiThread();
-extern void doNoteChanges();
+extern void *midiThread(void *);
+extern void doNoteChanges(bristolVoice *);
 extern int bristolMidiTerminate();
 
-pthread_t spawnThread();
+pthread_t spawnThread(void * (*)(void *), int );
+
+void *audioThreadWrap(void* ptr){
+  return audioThread((audioMain*)ptr);
+}
 
 audioMain audiomain;
 static char sessionfile[1024];
@@ -61,13 +65,13 @@ static char sessionfile[1024];
 char *outputfile = NULL;
 
 #ifdef BRISTOL_PA
-extern int bristolPulseInterface();
+extern int bristolPulseInterface(audioMain *);
 #endif
 
 #ifdef _BRISTOL_JACK
-extern int bristolJackInterface();
+extern int bristolJackInterface(audioMain *);
 #ifdef _BRISTOL_JACK_SESSION
-extern int bristolJackSessionCheck();
+extern int bristolJackSessionCheck(audioMain *);
 #endif
 #endif
 static int jsmd = 200;
@@ -720,7 +724,7 @@ int main(int argc, char **argv)
 
 				if (audiomain.debuglevel)
 					printf("spawning audio thread\n");
-				audiothread = spawnThread(audioThread, audiomain.priority);
+				audiothread = spawnThread(audioThreadWrap, audiomain.priority);
 
 				while (audiomain.atStatus != BRISTOL_OK)
 				{
@@ -967,7 +971,7 @@ pthread_t spawnThread(void * (*threadcode)(void *), int priority)
 	/*
 	 * Create thread, detach it.
 	 */
-	retcode = pthread_create(&thread, NULL, threadcode, &audiomain);
+	retcode = pthread_create(&thread, NULL, threadcode, (void*)&audiomain);
 	if (retcode != 0)
 		fprintf(stderr, "create a failed %d\n", retcode);
 
@@ -1019,7 +1023,7 @@ void midithreadexit()
 	pthread_exit(0);
 }
 
-void inthandler()
+void inthandler(int value)
 {
 	int i = 50;
 

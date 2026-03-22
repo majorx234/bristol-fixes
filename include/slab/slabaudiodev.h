@@ -42,8 +42,8 @@
  * These make up the threaded interface, the Interface call never returns, it
  * calls the audio shim with each buffer of data.
  */
-extern int bristolPulseClose();
-extern int bristolPulseInterface();
+extern int bristolPulseClose(audioMain *);
+extern int bristolPulseInterface(audioMain *);
 
 /*
  * And these are the simple interface, this sits underneath libbristolaudio so
