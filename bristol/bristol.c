@@ -1040,7 +1040,7 @@ void inthandler()
 	bristolMidiTerminate();
 }
 
-void alterAllNotes(Baudio *baudio)
+void alterAllNotes(bAudio *baudio)
 {
 	bristolVoice *voice = audiomain.playlist;
 

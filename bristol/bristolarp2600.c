@@ -119,7 +119,7 @@ arp2600ClearPatch(int from, int to)
 }
 
 int
-arp2600Controller(Baudio *baudio, u_char operator, u_char controller, float value)
+arp2600Controller(bAudio *baudio, u_char operator, u_char controller, float value)
 {
 	int ivalue = value * CONTROLLER_RANGE;
 
@@ -301,7 +301,7 @@ baudio->effect[0]->param->param[5].float_val);
 }
 
 int
-arp2600Preops(audioMain *audiomain, Baudio *baudio,
+arp2600Preops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	arp2600mods *mods = (arp2600mods *) baudio->mixlocals;
@@ -350,7 +350,7 @@ invert(register float *src, float *dst, register int sc)
 }
 
 int
-operateOneArp2600(audioMain *audiomain, Baudio *baudio,
+operateOneArp2600(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	arp2600mods *mods = (arp2600mods *) baudio->mixlocals;
@@ -1101,7 +1101,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateArp2600Postops(audioMain *audiomain, Baudio *baudio,
+operateArp2600Postops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	/*
@@ -1166,7 +1166,7 @@ bristolVoice *voice, register float *startbuf)
 	return(0);
 }
 
-static int bristolArp2600Destroy(audioMain *audiomain, Baudio *baudio)
+static int bristolArp2600Destroy(audioMain *audiomain, bAudio *baudio)
 {
 	printf("removing one arp2600\n");
 
@@ -1198,7 +1198,7 @@ static int bristolArp2600Destroy(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolArp2600Init(audioMain *audiomain, Baudio *baudio)
+bristolArp2600Init(audioMain *audiomain, bAudio *baudio)
 {
 	printf("initialising arp2600\n");
 

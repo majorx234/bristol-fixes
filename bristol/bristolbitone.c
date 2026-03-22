@@ -99,7 +99,7 @@ GLOBAL_STATE typedef struct bMods {
 } bmods;
 
 int
-bitoneController(Baudio *baudio, u_char operator,
+bitoneController(bAudio *baudio, u_char operator,
 u_char controller, float value)
 {
 	int tval = value * CONTROLLER_RANGE;
@@ -336,7 +336,7 @@ u_char controller, float value)
 }
 
 int
-bitonePreops(audioMain *audiomain, Baudio *baudio,
+bitonePreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	if (freqbuf == NULL)
@@ -489,7 +489,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOneBitone(audioMain *audiomain, Baudio *baudio,
+operateOneBitone(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	float lg, rg;
@@ -876,7 +876,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-bitonePostops(audioMain *audiomain, Baudio *baudio,
+bitonePostops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	if (freqbuf == NULL)
@@ -895,7 +895,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-static bristolBitoneDestroy(audioMain *audiomain, Baudio *baudio)
+static bristolBitoneDestroy(audioMain *audiomain, bAudio *baudio)
 {
 
 	/*
@@ -965,7 +965,7 @@ static bristolBitoneDestroy(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolBitoneInit(audioMain *audiomain, Baudio *baudio)
+bristolBitoneInit(audioMain *audiomain, bAudio *baudio)
 {
 	printf("initialising bitone: %i voices\n", baudio->voicecount);
 	/*

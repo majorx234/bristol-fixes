@@ -24,14 +24,14 @@
 #include "bristol.h"
 
 int
-bassmakerGlobalController(Baudio *baudio, u_char controller,
+bassmakerGlobalController(bAudio *baudio, u_char controller,
 u_char operator, float value)
 {
 	return(0);
 }
 
 int
-operateOneBassMakerVoice(audioMain *audiomain, Baudio *baudio,
+operateOneBassMakerVoice(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	/*
@@ -46,14 +46,14 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-destroyOneBassMaker(audioMain *audiomain, Baudio *baudio)
+destroyOneBassMaker(audioMain *audiomain, bAudio *baudio)
 {
 	printf("removing one bassmaker\n");
 	return(0);
 }
 
 int
-bristolBassMakerInit(audioMain *audiomain, Baudio *baudio)
+bristolBassMakerInit(audioMain *audiomain, bAudio *baudio)
 {
 	printf("initialising (empty) bassmaker\n");
 

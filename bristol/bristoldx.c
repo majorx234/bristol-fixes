@@ -24,12 +24,12 @@
 #include "bristol.h"
 #include "dxop.h"
 
-extern int bristolGlobalController(struct BAudio *, u_char, u_char, float);
+extern int bristolGlobalController(struct bAudio *, u_char, u_char, float);
 
 GLOBAL_STATE static float *lfobuf, *op0buf, *op1buf, *op2buf, *op3buf, *op4buf, *modbuf;
 
 int
-DXGlobalController(Baudio *baudio, u_char controller,
+DXGlobalController(bAudio *baudio, u_char controller,
 u_char operator, float value)
 {
 	int op, index;
@@ -136,7 +136,7 @@ u_char operator, float value)
 
 void
 dxOpOne(int ind, float *kbuf, float *opbuf, float *obuf, int count,
-dxmix *mix, audioMain *am, Baudio *ba, bristolVoice *v)
+dxmix *mix, audioMain *am, bAudio *ba, bristolVoice *v)
 {
 	float igain = mix[ind].igain;
 	int flags = v->flags & BRISTOL_KEYDONE;
@@ -175,7 +175,7 @@ dxmix *mix, audioMain *am, Baudio *ba, bristolVoice *v)
 }
 
 int
-DXalgoN(audioMain *am, register Baudio *ba, bristolVoice *voice, float *kb)
+DXalgoN(audioMain *am, register bAudio *ba, bristolVoice *voice, float *kb)
 {
 	register int i, sc = am->samplecount;
 	register float *bufptr = lfobuf;
@@ -749,7 +749,7 @@ DXalgoN(audioMain *am, register Baudio *ba, bristolVoice *voice, float *kb)
 }
 
 int
-DXalgoNpostops(audioMain *am, Baudio *ba, bristolVoice *v, register float *s)
+DXalgoNpostops(audioMain *am, bAudio *ba, bristolVoice *v, register float *s)
 {
 	bufmerge(ba->leftbuf, 0.0, ba->leftbuf, 8.0, am->samplecount);
 	bufmerge(ba->rightbuf, 0.0, ba->rightbuf, 8.0, am->samplecount);
@@ -758,7 +758,7 @@ DXalgoNpostops(audioMain *am, Baudio *ba, bristolVoice *v, register float *s)
 }
 
 int
-destroyOneDXVoice(audioMain *audiomain, Baudio *baudio)
+destroyOneDXVoice(audioMain *audiomain, bAudio *baudio)
 {
 	printf("destroy DX sound\n");
 	return(0);
@@ -769,7 +769,7 @@ destroyOneDXVoice(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolDXInit(audioMain *audiomain, Baudio *baudio)
+bristolDXInit(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one DX sound\n");
 
@@ -819,7 +819,7 @@ printf("initialising one DX sound\n");
 }
 
 int
-bristolRhodesInit(audioMain *audiomain, Baudio *baudio)
+bristolRhodesInit(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one Rhodes sound\n");
 

@@ -28,7 +28,7 @@
 GLOBAL_STATE extern bristolMidiHandler bristolMidiRoutines;
 
 /* This is required for 2602222, voices left hanging when terminating */
-static void desequence(audioMain *am, Baudio *ba)
+static void desequence(audioMain *am, bAudio *ba)
 {
 	bristolVoice *voice = am->playlist;
 
@@ -54,7 +54,7 @@ bristolArpeggiator(audioMain *audiomain, bristolMidiMsg *msg)
 {
 	float value;
 	int tval;
-	Baudio *baudio = findBristolAudio(audiomain->audiolist,
+	bAudio *baudio = findBristolAudio(audiomain->audiolist,
 		msg->params.bristol.channel, 0);
 
 	if (baudio == NULL)
@@ -376,7 +376,7 @@ arpeggiatorRePoly2(arpSeq *seq, int voicecount)
  * This is always called for NOTE ON, irrespective of SEQUENCER status.
  */
 void
-bristolArpeggiatorNoteEvent(Baudio *baudio, bristolMidiMsg *msg)
+bristolArpeggiatorNoteEvent(bAudio *baudio, bristolMidiMsg *msg)
 {
 	/*
 	 * The code could be speeded up by putting the sequencer pointer into a
@@ -621,7 +621,7 @@ arpeggioCounterCheck(arpSeq *seq, int samplecount)
  * called per voice.
  */
 int
-bristolArpegReAudio(audioMain *audiomain, Baudio *baudio)
+bristolArpegReAudio(audioMain *audiomain, bAudio *baudio)
 {
 	baudio->arpeggio.flags &= ~BRISTOL_REQ_TRIGGER;
 
@@ -655,7 +655,7 @@ bristolArpegReAudio(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolArpegReVoice(Baudio *baudio, bristolVoice *voice, float sr)
+bristolArpegReVoice(bAudio *baudio, bristolVoice *voice, float sr)
 {
 	float dFreq = voice->dFreq;
 	int key = voice->key.key;
@@ -786,7 +786,7 @@ bristolArpegReVoice(Baudio *baudio, bristolVoice *voice, float sr)
  * an emulation using the baudio given here.
  */
 void
-bristolArpeggiatorInit(Baudio *baudio)
+bristolArpeggiatorInit(bAudio *baudio)
 {
 	int i;
 

@@ -37,7 +37,7 @@
  */
 
 int
-bme700Controller(Baudio *baudio, u_char operator, u_char controller, float value)
+bme700Controller(bAudio *baudio, u_char operator, u_char controller, float value)
 {
 //	int ivalue = value * CONTROLLER_RANGE;
 
@@ -215,7 +215,7 @@ bme700Controller(Baudio *baudio, u_char operator, u_char controller, float value
  * always have multi and let uni be monophonic?
  */
 int
-bme700Preops(audioMain *audiomain, Baudio *baudio,
+bme700Preops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	if ((baudio->mixflags & BME700_LFO1_MULTI) == 0)
@@ -283,7 +283,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOneBme700(audioMain *audiomain, Baudio *baudio,
+operateOneBme700(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	int flags;
@@ -564,7 +564,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-bme700PostOps(audioMain *audiomain, Baudio *baudio,
+bme700PostOps(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	bufmerge(baudio->leftbuf, 0.0,
@@ -575,7 +575,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-static bristolBme700Destroy(audioMain *audiomain, Baudio *baudio)
+static bristolBme700Destroy(audioMain *audiomain, bAudio *baudio)
 {
 	printf("removing one bme700\n");
 
@@ -600,7 +600,7 @@ static bristolBme700Destroy(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolBme700Init(audioMain *audiomain, Baudio *baudio)
+bristolBme700Init(audioMain *audiomain, bAudio *baudio)
 {
 	printf("initialising bme700\n");
 

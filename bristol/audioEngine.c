@@ -104,7 +104,7 @@ doAudioOps(audioMain *audiomain, float *outbuf, float *startbuf)
 {
 	register bristolVoice *voice;
 	register int i;
-	register Baudio *thisaudio;
+	register bAudio *thisaudio;
 	register float *extmult, *leftch, *rightch, gain;
 	bristolMidiMsg msg;
 
@@ -154,7 +154,7 @@ doAudioOps(audioMain *audiomain, float *outbuf, float *startbuf)
 		 */
 		if (thisaudio->mixflags & BRISTOL_REMOVE)
 		{
-			Baudio *holder = thisaudio;
+			bAudio *holder = thisaudio;
 			bristolVoice *vl;
 
 #ifdef BRISTOL_SEMAPHORE
@@ -690,7 +690,7 @@ doAudioOps(audioMain *audiomain, float *outbuf, float *startbuf)
  * for the tendency tables which are frequency based.
  */
 int
-fillFreqBuf(Baudio *baudio, register bristolVoice *voice, register float *buf,
+fillFreqBuf(bAudio *baudio, register bristolVoice *voice, register float *buf,
 	register int size, int glide)
 {
 	register int i;
@@ -824,7 +824,7 @@ fillFreqBuf(Baudio *baudio, register bristolVoice *voice, register float *buf,
  * call this routine more than once.
  */
 int
-fillFreqTable(Baudio *baudio, register bristolVoice *voice, register float *buf,
+fillFreqTable(bAudio *baudio, register bristolVoice *voice, register float *buf,
 	register int size, int glide)
 {
 	register int i;

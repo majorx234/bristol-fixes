@@ -64,7 +64,7 @@ GLOBAL_STATE static struct {
 } abufs;
 
 int
-aksController(Baudio *baudio, u_char operator, u_char controller, float value)
+aksController(bAudio *baudio, u_char operator, u_char controller, float value)
 {
 #ifdef DEBUG
 	printf("bristolAksControl(%i, %i, %f)\n", operator, controller, value);
@@ -219,7 +219,7 @@ fillmodbuf(float *buf, int input, int voice, int count)
 }
 
 int
-operateOneAks(audioMain *audiomain, Baudio *baudio,
+operateOneAks(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	aksmods *mods = (aksmods *) baudio->mixlocals;
@@ -603,7 +603,7 @@ mods->loutfilt, mods->routfilt);
 }
 
 int
-operateAksPostops(audioMain *audiomain, Baudio *baudio,
+operateAksPostops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	if (baudio->mixlocals == NULL)
@@ -613,7 +613,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 static int
-bristolAksDestroy(audioMain *audiomain, Baudio *baudio)
+bristolAksDestroy(audioMain *audiomain, bAudio *baudio)
 {
 	printf("removing one aks\n");
 	baudio->mixlocals = NULL;
@@ -631,7 +631,7 @@ bristolAksDestroy(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolAksInit(audioMain *audiomain, Baudio *baudio)
+bristolAksInit(audioMain *audiomain, bAudio *baudio)
 {
 	aksmods *mods;
 

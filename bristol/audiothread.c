@@ -44,7 +44,7 @@ extern int bristolJackInterface();
 
 GLOBAL_STATE extern int dupfd;
 GLOBAL_STATE extern char *outputfile;
-extern int buildCurrentTable(Baudio *, float);
+extern int buildCurrentTable(bAudio *, float);
 extern void initMicrotonalTable(fTab [], int);
 
 static void initPalette();
@@ -56,7 +56,7 @@ void mapVelocityCurve(int, float []);
 
 void llgain(float *, int, float);
 
-/*Baudio *baudio; */
+/*bAudio *baudio; */
 
 void
 audioThread(audioMain *audiomain)
@@ -360,10 +360,10 @@ llgain(register float *buf, register int count, register float gain)
 	}
 }
 
-extern void doPitchWheel(Baudio *);
+extern void doPitchWheel(bAudio *);
 
 int
-bristolMidiController(Baudio *baudio, int NRP, float value)
+bristolMidiController(bAudio *baudio, int NRP, float value)
 {
 	if (baudio->midiflags & BRISTOL_MIDI_DEBUG2)
 		printf("bristolMidiController(%i, %f)\n", NRP, value);
@@ -697,7 +697,7 @@ mapVelocityCurve(int velocity, float map[128])
  * thread to the audio thread.
  */
 void
-initBristolAudio(audioMain *audiomain, Baudio *baudio)
+initBristolAudio(audioMain *audiomain, bAudio *baudio)
 {
 	int i, j;
 	bristolOP *op;
@@ -954,11 +954,11 @@ freeAudioMain(audioMain *audiomain)
 }
 
 void
-freeBristolAudio(audioMain *audiomain, Baudio *baudio)
+freeBristolAudio(audioMain *audiomain, bAudio *baudio)
 {
 	bristolVoice *voice = audiomain->freelist;
 
-	if (baudio == (Baudio *) NULL)
+	if (baudio == (bAudio *) NULL)
 		return;
 
 	baudio->mixflags |= BRISTOL_HOLDDOWN;
@@ -1068,7 +1068,7 @@ freeMidiVoices(audioMain *audiomain, bristolVoice *voice)
 static void
 resetAudioThread(audioMain *audiomain)
 {
-	Baudio *holder;
+	bAudio *holder;
 
 	if ((audiomain->debuglevel & BRISTOL_DEBUG_MASK) > BRISTOL_DEBUG1)
 		printf("resetAudioThread()\n");

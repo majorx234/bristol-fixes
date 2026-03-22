@@ -62,7 +62,7 @@ GLOBAL_STATE static float *modbuf = (float *) NULL;
 #define CS80_LFO1_SAW		0x00000100
 
 int
-cs80Controller(Baudio *baudio, u_char operator,
+cs80Controller(bAudio *baudio, u_char operator,
 u_char controller, float value)
 {
 	int tval = value * CONTROLLER_RANGE;
@@ -296,7 +296,7 @@ Level: %1.2f %1.2f %1.2f %1.2f %1.2f %1.2f\n",
  * steady state the envelope should continue to open as expected.
  */
 int
-cs80Preops(audioMain *audiomain, Baudio *baudio,
+cs80Preops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	if (freqbuf == NULL)
@@ -378,7 +378,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 void
-operateOneCs80Channel(audioMain *audiomain, Baudio *baudio,
+operateOneCs80Channel(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, bristolSound **sound, int channel)
 {
 	csmods *csmod = ((csmods *) baudio->mixlocals);
@@ -579,7 +579,7 @@ bkey, lkey);
 }
 
 int
-operateOneCs80(audioMain *audiomain, Baudio *baudio,
+operateOneCs80(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, float *startbuf)
 {
 	csmods *mixlocal = (csmods *) baudio->mixlocals;
@@ -679,7 +679,7 @@ bristolVoice *voice, float *startbuf)
 }
 
 int
-cs80Postops(audioMain *audiomain, Baudio *baudio,
+cs80Postops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	if (freqbuf == NULL)
@@ -703,7 +703,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-static bristolCs80Destroy(audioMain *audiomain, Baudio *baudio)
+static bristolCs80Destroy(audioMain *audiomain, bAudio *baudio)
 {
 	/*
 	 * The following can be left up to the library. If we free this here then
@@ -765,7 +765,7 @@ static bristolCs80Destroy(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolCs80Init(audioMain *audiomain, Baudio *baudio)
+bristolCs80Init(audioMain *audiomain, bAudio *baudio)
 {
 	printf("initialising cs80: %i voices\n", baudio->voicecount);
 

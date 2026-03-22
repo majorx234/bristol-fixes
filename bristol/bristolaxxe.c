@@ -44,7 +44,7 @@ GLOBAL_STATE static float *osc2buf = (float *) NULL;
 GLOBAL_STATE static float *scratch = (float *) NULL;
 
 int
-axxeController(Baudio *baudio, u_char operator, u_char controller, float value)
+axxeController(bAudio *baudio, u_char operator, u_char controller, float value)
 {
 	int ivalue = value * CONTROLLER_RANGE;
 
@@ -197,7 +197,7 @@ axxeController(Baudio *baudio, u_char operator, u_char controller, float value)
 }
 
 int
-axxePreops(audioMain *audiomain, Baudio *baudio,
+axxePreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	if (((axxemods *) baudio->mixlocals)->lfolocals == 0)
@@ -248,7 +248,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOneAxxe(audioMain *audiomain, Baudio *baudio,
+operateOneAxxe(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	axxemods *mods = (axxemods *) baudio->mixlocals;
@@ -452,7 +452,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 static int
-bristolAxxeDestroy(audioMain *audiomain, Baudio *baudio)
+bristolAxxeDestroy(audioMain *audiomain, bAudio *baudio)
 {
 printf("removing one axxe\n");
 	return(0);
@@ -470,7 +470,7 @@ printf("removing one axxe\n");
 }
 
 int
-bristolAxxeInit(audioMain *audiomain, Baudio *baudio)
+bristolAxxeInit(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one axxe\n");
 	baudio->soundCount = 8; /* Number of operators in this voice */

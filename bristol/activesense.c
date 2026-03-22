@@ -32,7 +32,7 @@
 int
 bristolActiveSense(audioMain *audiomain, bristolMidiMsg *msg)
 {
-	Baudio *baudio = findBristolAudio(audiomain->audiolist,
+	bAudio *baudio = findBristolAudio(audiomain->audiolist,
 		msg->params.bristol.channel, 0);
 
 	if (baudio == NULL)
@@ -55,7 +55,7 @@ bristolActiveSense(audioMain *audiomain, bristolMidiMsg *msg)
 }
 
 int
-bristolActiveSenseCheck(audioMain *audiomain, Baudio *baudio)
+bristolActiveSenseCheck(audioMain *audiomain, bAudio *baudio)
 {
 	if (audiomain->debuglevel > 13)
 		printf("ActiveSenseCheck %p: %i\n", baudio, baudio->sensecount);
