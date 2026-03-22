@@ -30,11 +30,11 @@ GLOBAL_STATE static float *sawbuf = (float *) NULL;
 GLOBAL_STATE static float *sqrbuf = (float *) NULL;
 GLOBAL_STATE static float *lfobuf = (float *) NULL;
 
-extern int bristolGlobalController(struct BAudio *, u_char, u_char, float);
-extern int buildCurrentTable(Baudio *, float);
+extern int bristolGlobalController(struct bAudio *, u_char, u_char, float);
+extern int buildCurrentTable(bAudio *, float);
 
 int
-solinaGlobalController(Baudio *baudio, u_char operator,
+solinaGlobalController(bAudio *baudio, u_char operator,
 u_char controller, float value)
 {
 	/*
@@ -155,7 +155,7 @@ baudio->effect[0]->param->param[5].float_val);
 }
 
 int
-operateSolinaPreops(audioMain *audiomain, Baudio *baudio,
+operateSolinaPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	solinamods *mods = (solinamods *) baudio->mixlocals;
@@ -193,7 +193,7 @@ bristolVoice *voice, register float *startbuf)
  * Operate one solina voice.
  */
 int
-operateOneSolinaVoice(audioMain *audiomain, Baudio *baudio,
+operateOneSolinaVoice(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	int samplecount = audiomain->samplecount;
@@ -327,7 +327,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateSolinaPostops(audioMain *audiomain, Baudio *baudio,
+operateSolinaPostops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 #ifdef DEBUG
@@ -345,7 +345,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-destroyOneSolinaVoice(audioMain *audiomain, Baudio *baudio)
+destroyOneSolinaVoice(audioMain *audiomain, bAudio *baudio)
 {
 	printf("destroying one solina\n");
 
@@ -353,7 +353,7 @@ destroyOneSolinaVoice(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolSolinaInit(audioMain *audiomain, Baudio *baudio)
+bristolSolinaInit(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one solina sound\n");
 

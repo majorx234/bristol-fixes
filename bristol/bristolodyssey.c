@@ -87,7 +87,7 @@ oContMod(odysseymods *mods, int index, float value)
 }
 
 int
-odysseyController(Baudio *baudio, u_char operator, u_char controller, float value)
+odysseyController(bAudio *baudio, u_char operator, u_char controller, float value)
 {
 	int ivalue = value * CONTROLLER_RANGE;
 	odysseymods *mods = (odysseymods *) baudio->mixlocals;
@@ -297,7 +297,7 @@ odysseyController(Baudio *baudio, u_char operator, u_char controller, float valu
 }
 
 int
-odysseyPreops(audioMain *audiomain, Baudio *baudio,
+odysseyPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	odysseymods *mods = (odysseymods *) baudio->mixlocals;
@@ -423,7 +423,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOneOdyssey(audioMain *audiomain, Baudio *baudio,
+operateOneOdyssey(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	odysseymods *mods = (odysseymods *) baudio->mixlocals;
@@ -716,7 +716,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 static int
-bristolOdysseyDestroy(audioMain *audiomain, Baudio *baudio)
+bristolOdysseyDestroy(audioMain *audiomain, bAudio *baudio)
 {
 printf("removing one odyssey\n");
 	return(0);
@@ -741,7 +741,7 @@ printf("removing one odyssey\n");
 }
 
 int
-bristolOdysseyInit(audioMain *audiomain, Baudio *baudio)
+bristolOdysseyInit(audioMain *audiomain, bAudio *baudio)
 {
 	odysseymods *mods;
 	int i;

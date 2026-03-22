@@ -27,8 +27,11 @@
  */
 #define BRISTOL_ACTIVE_SENSE	124
 
-extern int bristolActiveSense();
-extern int bristolActiveSenseCheck();
+struct audioMain;
+struct bristolMidiMsg;
+struct bAudio;
+extern int bristolActiveSense(struct audioMain *audiomain, struct bristolMidiMsg *msg);
+extern int bristolActiveSenseCheck(struct audioMain *audiomain, struct bAudio *baudio);
 
 #endif
 

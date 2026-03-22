@@ -36,10 +36,10 @@
 #include "bristoltrilogy.h"
 #include <math.h>
 
-extern int buildCurrentTable(Baudio *, float);
+extern int buildCurrentTable(bAudio *, float);
 
 static int
-trilogyGlobalController(Baudio *baudio, u_char controller,
+trilogyGlobalController(bAudio *baudio, u_char controller,
 u_char operator, float value)
 {
 	int ivalue = value * CONTROLLER_RANGE;
@@ -198,7 +198,7 @@ u_char operator, float value)
 }
 
 int
-operateTrilogyODCPreops(audioMain *audiomain, Baudio *baudio,
+operateTrilogyODCPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	/*
@@ -243,7 +243,7 @@ fillLFOgainTable(float *buf, float current, float slope, float target, int i)
 }
 
 int
-operateTrilogyPreops(audioMain *audiomain, Baudio *baudio,
+operateTrilogyPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	if ((baudio->mixflags & MULTI_LFO) == 0)
@@ -327,7 +327,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOneTrilogyODCVoice(audioMain *audiomain, Baudio *baudio,
+operateOneTrilogyODCVoice(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	/*
@@ -494,7 +494,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateTrilogyODCPostops(audioMain *audiomain, Baudio *baudio,
+operateTrilogyODCPostops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	/* Pan and master volume
@@ -510,7 +510,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOneTrilogyVoice(audioMain *audiomain, Baudio *baudio,
+operateOneTrilogyVoice(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 //	if (TRILOGYLCL->mixsynth == 0)
@@ -935,7 +935,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateTrilogyPostops(audioMain *audiomain, Baudio *baudio,
+operateTrilogyPostops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	bufmerge(baudio->leftbuf,
@@ -952,7 +952,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 static int
-destroyOneTrilogyVoice(audioMain *audiomain, Baudio *baudio)
+destroyOneTrilogyVoice(audioMain *audiomain, bAudio *baudio)
 {
 	printf("destroying trilogy synth\n");
 
@@ -972,7 +972,7 @@ destroyOneTrilogyVoice(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolTrilogyODCInit(audioMain *audiomain, Baudio *baudio)
+bristolTrilogyODCInit(audioMain *audiomain, bAudio *baudio)
 {
 	printf("initialising trilogy organ divider circuit\n");
 
@@ -1048,7 +1048,7 @@ bristolTrilogyODCInit(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolTrilogyInit(audioMain *audiomain, Baudio *baudio)
+bristolTrilogyInit(audioMain *audiomain, bAudio *baudio)
 {
 	printf("initialising trilogy synth\n");
 

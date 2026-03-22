@@ -188,7 +188,7 @@ extern int bristolBassMakerInit();
 extern int bristolSidInit();
 
 struct bristolAlgos {
-	int (*initialise)(audioMain *, Baudio *);
+	int (*initialise)(audioMain *, bAudio *);
 	char *name;
 } bristolAlgos[BRISTOL_SYNTHCOUNT] = {
 	{bristolMMInit, "mini"},
@@ -266,7 +266,7 @@ newPalette()
 }
 
 struct bristolEffects {
-	bristolOP * (*initialise)(audioMain *, Baudio *);
+	bristolOP * (*initialise)(audioMain *, bAudio *);
 } bristolEffects[BRISTOL_SYNTHCOUNT] = {
 	{leslieinit},
 	{NULL},

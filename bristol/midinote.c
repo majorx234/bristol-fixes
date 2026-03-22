@@ -36,7 +36,7 @@ int rbMidiNoteOff(audioMain *, bristolMidiMsg *);
 static int
 doMNL(bristolVoice *voice, int key, int velocity, int action, int offset)
 {
-	Baudio *baudio = voice->baudio;
+	bAudio *baudio = voice->baudio;
 	int mn = -1;
 
 offset = 99;
@@ -478,7 +478,7 @@ GLOBAL_STATE static int nx2 = 0xefcdab89;
  * for the ability to do layering.
  */
 int
-doMidiNoteOn(audioMain *audiomain, bristolMidiMsg *msg, Baudio *baudio, int key)
+doMidiNoteOn(audioMain *audiomain, bristolMidiMsg *msg, bAudio *baudio, int key)
 {
 	bristolVoice *voice, *last = NULL, *donevoice = NULL;
 	int lastkey, transposedkey, velocity, offset;
@@ -883,7 +883,7 @@ int
 midiNoteOn(audioMain *audiomain, bristolMidiMsg *msg)
 {
 #ifdef BRISTOL_SEMAPHORE
-	Baudio *baudio = audiomain->audiolist;
+	bAudio *baudio = audiomain->audiolist;
 #else
 
 	if (msg->params.key.velocity == 0)
@@ -923,7 +923,7 @@ midiNoteOn(audioMain *audiomain, bristolMidiMsg *msg)
 int
 rbMidiNoteOn(audioMain *audiomain, bristolMidiMsg *msg)
 {
-	Baudio *baudio = audiomain->audiolist;
+	bAudio *baudio = audiomain->audiolist;
 #endif
 	/*
 	 * Hm, if we have already applied a velocity curve then this value that
@@ -944,7 +944,7 @@ rbMidiNoteOn(audioMain *audiomain, bristolMidiMsg *msg)
 	 * baudio lists, and find the correct MIDI channel. Link up the locals
 	 * list.
 	 */
-	while (baudio != (Baudio *) NULL)
+	while (baudio != (bAudio *) NULL)
 	{
 		if (baudio->mixflags & (BRISTOL_HOLDDOWN|BRISTOL_REMOVE))
 		{

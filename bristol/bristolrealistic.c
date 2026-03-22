@@ -50,7 +50,7 @@ GLOBAL_STATE static float *zerobuf = (float *) NULL;
 GLOBAL_STATE static float *modbuf;
 
 int
-mg1Controller(Baudio *baudio, u_char operator, u_char controller, float value)
+mg1Controller(bAudio *baudio, u_char operator, u_char controller, float value)
 {
 	int ivalue = value * CONTROLLER_RANGE;
 
@@ -128,7 +128,7 @@ printf("gate is %i\n", ivalue);
 }
 
 int
-mg1Preops(audioMain *audiomain, Baudio *baudio,
+mg1Preops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	((mg1mods *) baudio->mixlocals)->vprocessed = 0;
@@ -199,7 +199,7 @@ bristolVoice *voice, register float *startbuf)
  * This is only going to be the poly organ circuits.
  */
 int
-operateOneMg1(audioMain *audiomain, Baudio *baudio,
+operateOneMg1(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	int sc = audiomain->samplecount;
@@ -261,7 +261,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-mg1Postops(audioMain *audiomain, Baudio *baudio,
+mg1Postops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	int kflags = 0;
@@ -387,7 +387,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 static int
-bristolMg1Destroy(audioMain *audiomain, Baudio *baudio)
+bristolMg1Destroy(audioMain *audiomain, bAudio *baudio)
 {
 printf("removing one mg1\n");
 	return(0);
@@ -405,7 +405,7 @@ printf("removing one mg1\n");
 }
 
 int
-bristolMg1Init(audioMain *audiomain, Baudio *baudio)
+bristolMg1Init(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one mg1: %i\n", baudio->voicecount);
 	/*

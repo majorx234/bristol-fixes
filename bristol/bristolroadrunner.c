@@ -31,11 +31,11 @@ GLOBAL_STATE static float *tribuf = (float *) NULL;
 GLOBAL_STATE static float *sqrbuf = (float *) NULL;
 GLOBAL_STATE static float *lfobuf = (float *) NULL;
 
-extern int bristolGlobalController(struct BAudio *, u_char, u_char, float);
-extern int buildCurrentTable(Baudio *, float);
+extern int bristolGlobalController(struct bAudio *, u_char, u_char, float);
+extern int buildCurrentTable(bAudio *, float);
 
 int
-roadrunnerGlobalController(Baudio *baudio, u_char operator,
+roadrunnerGlobalController(bAudio *baudio, u_char operator,
 u_char controller, float value)
 {
 	/*
@@ -175,7 +175,7 @@ baudio->effect[0]->param->param[5].float_val);
 }
 
 int
-operateRoadrunnerPreops(audioMain *audiomain, Baudio *baudio,
+operateRoadrunnerPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	roadrunnermods *mods = (roadrunnermods *) baudio->mixlocals;
@@ -209,7 +209,7 @@ bristolVoice *voice, register float *startbuf)
  * Operate one roadrunner voice.
  */
 int
-operateOneRoadrunnerVoice(audioMain *audiomain, Baudio *baudio,
+operateOneRoadrunnerVoice(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	int samplecount = audiomain->samplecount;
@@ -349,7 +349,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateRoadrunnerPostops(audioMain *audiomain, Baudio *baudio,
+operateRoadrunnerPostops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 #ifdef DEBUG
@@ -367,13 +367,13 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-destroyOneRoadrunnerVoice(audioMain *audiomain, Baudio *baudio)
+destroyOneRoadrunnerVoice(audioMain *audiomain, bAudio *baudio)
 {
 	return(0);
 }
 
 int
-bristolRoadrunnerInit(audioMain *audiomain, Baudio *baudio)
+bristolRoadrunnerInit(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one roadrunner sound\n");
 

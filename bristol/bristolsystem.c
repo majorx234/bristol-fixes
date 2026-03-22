@@ -39,7 +39,7 @@ extern void allNotesOff();
 GLOBAL_STATE static int initCount = 0;
 
 int
-bristolgetsid(Baudio *baudio, int sid)
+bristolgetsid(bAudio *baudio, int sid)
 {
 	int tsid;
 
@@ -101,7 +101,7 @@ bristolSystem(audioMain *audiomain, bristolMidiMsg *msg)
 			 */
 			bristolMidiOption(0, BRISTOL_NRP_MIDI_GO, 0);
 
-			Baudio *baudio = (Baudio *) bristolmalloc0(sizeof(Baudio));
+			bAudio *baudio = (bAudio *) bristolmalloc0(sizeof(bAudio));
 
 			baudio->mixflags = (BRISTOL_HOLDDOWN|BRISTOL_SENSE);
 			/* Turn on sensing with a long timer, GUI can disable it later */
@@ -198,7 +198,7 @@ bristolSystem(audioMain *audiomain, bristolMidiMsg *msg)
 				break;
 			case BRISTOL_VOICES:
 			{
-				Baudio *baudio;
+				bAudio *baudio;
 
 				if (audiomain->voiceCount <= 0)
 					audiomain->voiceCount = (BRISTOL_PARAMMASK & flags);
@@ -235,7 +235,7 @@ bristolSystem(audioMain *audiomain, bristolMidiMsg *msg)
 			}
 			case BRISTOL_INIT_ALGO:
 			{
-				Baudio *baudio;
+				bAudio *baudio;
 
 				if (audiomain->atStatus != BRISTOL_OK)
 					break;
@@ -264,7 +264,7 @@ bristolSystem(audioMain *audiomain, bristolMidiMsg *msg)
 			}
 			case BRISTOL_EXIT_ALGO:
 			{
-				Baudio *baudio = findBristolAudio(audiomain->audiolist,
+				bAudio *baudio = findBristolAudio(audiomain->audiolist,
 					msg->params.bristol.channel, 0);
 
 				if ((baudio == NULL) || (baudio->mixflags == 0))
@@ -368,7 +368,7 @@ bristolSystem(audioMain *audiomain, bristolMidiMsg *msg)
 			 */
 			case (BRISTOL_TRANSPOSE & BRISTOL_COMMASK):
 			{
-				Baudio *baudio = findBristolAudio(audiomain->audiolist,
+				bAudio *baudio = findBristolAudio(audiomain->audiolist,
 					msg->params.bristol.channel, 0);
 
 				if (baudio == NULL)
@@ -391,7 +391,7 @@ bristolSystem(audioMain *audiomain, bristolMidiMsg *msg)
 			}
 			case BRISTOL_HOLD:
 			{
-				Baudio *baudio = findBristolAudio(audiomain->audiolist,
+				bAudio *baudio = findBristolAudio(audiomain->audiolist,
 					msg->params.bristol.channel, 0);
 
 				if (baudio == NULL)
@@ -408,7 +408,7 @@ bristolSystem(audioMain *audiomain, bristolMidiMsg *msg)
 			}
 			case BRISTOL_LOWKEY:
 			{
-				Baudio *baudio = findBristolAudio(audiomain->audiolist,
+				bAudio *baudio = findBristolAudio(audiomain->audiolist,
 					msg->params.bristol.channel, 0);
 
 				if (baudio == NULL)
@@ -420,7 +420,7 @@ bristolSystem(audioMain *audiomain, bristolMidiMsg *msg)
 			}
 			case BRISTOL_HIGHKEY:
 			{
-				Baudio *baudio = findBristolAudio(audiomain->audiolist,
+				bAudio *baudio = findBristolAudio(audiomain->audiolist,
 					msg->params.bristol.channel, 0);
 
 				if (baudio == NULL)
@@ -431,7 +431,7 @@ bristolSystem(audioMain *audiomain, bristolMidiMsg *msg)
 			}
 			case BRISTOL_UNISON:
 			{
-				Baudio *baudio = findBristolAudio(audiomain->audiolist,
+				bAudio *baudio = findBristolAudio(audiomain->audiolist,
 					msg->params.bristol.channel, 0);
 
 				if (msg->params.bristol.valueLSB > 0)
@@ -445,7 +445,7 @@ bristolSystem(audioMain *audiomain, bristolMidiMsg *msg)
 				break;
 			case BRISTOL_MIDICHANNEL:
 			{
-				Baudio *baudio;
+				bAudio *baudio;
 
 				allNotesOff(audiomain, -1);
 

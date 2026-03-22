@@ -104,7 +104,7 @@ GLOBAL_STATE typedef struct bMods {
 } bmods;
 
 int
-jupiterController(Baudio *baudio, u_char operator,
+jupiterController(bAudio *baudio, u_char operator,
 u_char controller, float value)
 {
 	int tval = value * CONTROLLER_RANGE;
@@ -400,7 +400,7 @@ u_char controller, float value)
 GLOBAL_STATE static int lfo1exclusion = 0;
 
 int
-jupiterPreops(audioMain *audiomain, Baudio *baudio,
+jupiterPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	if (freqbuf == NULL)
@@ -533,7 +533,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOneJupiter(audioMain *audiomain, Baudio *baudio,
+operateOneJupiter(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	bmods *mixlocal = (bmods *) baudio->mixlocals;
@@ -928,7 +928,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-jupiterPostops(audioMain *audiomain, Baudio *baudio,
+jupiterPostops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	if (freqbuf == NULL)
@@ -949,7 +949,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-static bristolJupiterDestroy(audioMain *audiomain, Baudio *baudio)
+static bristolJupiterDestroy(audioMain *audiomain, bAudio *baudio)
 {
 	int i;
 
@@ -1023,7 +1023,7 @@ static bristolJupiterDestroy(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolJupiterInit(audioMain *audiomain, Baudio *baudio)
+bristolJupiterInit(audioMain *audiomain, bAudio *baudio)
 {
 	int i;
 

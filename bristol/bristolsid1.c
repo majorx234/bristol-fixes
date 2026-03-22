@@ -145,7 +145,7 @@ siddt(sidmods *smods)
 }
 
 int
-sidController(Baudio *baudio, u_char operator, u_char controller, float value)
+sidController(bAudio *baudio, u_char operator, u_char controller, float value)
 {
 	int ivalue = value * CONTROLLER_RANGE;
 	sidmods *smods = ((sidmods *) baudio->mixlocals);
@@ -766,7 +766,7 @@ sidAssignVoice(sidmods *smods, int voice, int flags)
  *	flag the MIDI note as known,
  */
 static void
-sidPoly1NoteLogic(Baudio *baudio, sidmods *smods)
+sidPoly1NoteLogic(bAudio *baudio, sidmods *smods)
 {
 	int i, low = B_SID_VOICE_1, middle = B_SID_VOICE_2, high = B_SID_VOICE_3;
 
@@ -921,7 +921,7 @@ sidPoly1NoteLogic(Baudio *baudio, sidmods *smods)
  * with two voices where there is only one note.
  */
 static void
-sidPoly3NoteLogic(Baudio *baudio, sidmods *smods)
+sidPoly3NoteLogic(bAudio *baudio, sidmods *smods)
 {
 	int i, ac = 0;
 	//int occ = 0;
@@ -1018,7 +1018,7 @@ sidPoly3NoteLogic(Baudio *baudio, sidmods *smods)
  * with two voices where there is only one note.
  */
 static void
-sidPoly4NoteLogic(Baudio *baudio, sidmods *smods)
+sidPoly4NoteLogic(bAudio *baudio, sidmods *smods)
 {
 	int i, ac = 0;
 	//int occ = 0;
@@ -1199,7 +1199,7 @@ sidCheckModTrigger(sidmods *smods)
  * mono is probably already enough with 3 voices and up to 9 oscillators.
  */
 int
-operateOneSid(audioMain *audiomain, Baudio *baudio,
+operateOneSid(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	int vcount = 0, i, tmp3;
@@ -1797,7 +1797,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-static bristolSidDestroy(audioMain *audiomain, Baudio *baudio)
+static bristolSidDestroy(audioMain *audiomain, bAudio *baudio)
 {
 	printf("removing one sid\n");
 
@@ -1811,7 +1811,7 @@ static bristolSidDestroy(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolSidInit(audioMain *audiomain, Baudio *baudio)
+bristolSidInit(audioMain *audiomain, bAudio *baudio)
 {
 	printf("initialising sid driver\n");
 

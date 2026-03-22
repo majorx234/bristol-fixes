@@ -34,7 +34,7 @@
  */
 
 int
-poly800Controller(Baudio *baudio, u_char operator, u_char controller, float value)
+poly800Controller(bAudio *baudio, u_char operator, u_char controller, float value)
 {
 //	int ivalue = value * CONTROLLER_RANGE;
 
@@ -175,7 +175,7 @@ fillLFOgainTable(float *buf, float current, float slope, float target, int i)
 }
 
 int
-poly800Preops(audioMain *audiomain, Baudio *baudio,
+poly800Preops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	/*
@@ -286,7 +286,7 @@ mult2buf(register float *d, register float *s, register float v, register int c)
 }
 
 int
-operateOnePoly800(audioMain *audiomain, Baudio *baudio,
+operateOnePoly800(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	unsigned int flags = 0;
@@ -522,7 +522,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-poly800PostOps(audioMain *audiomain, Baudio *baudio,
+poly800PostOps(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	/*
@@ -588,7 +588,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-static bristolPoly800Destroy(audioMain *audiomain, Baudio *baudio)
+static bristolPoly800Destroy(audioMain *audiomain, bAudio *baudio)
 {
 	printf("removing one poly800\n");
 
@@ -609,7 +609,7 @@ static bristolPoly800Destroy(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolPoly800Init(audioMain *audiomain, Baudio *baudio)
+bristolPoly800Init(audioMain *audiomain, bAudio *baudio)
 {
 	printf("initialising poly800\n");
 

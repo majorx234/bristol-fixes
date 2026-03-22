@@ -39,12 +39,12 @@ GLOBAL_STATE static float *onbuf = (float *) NULL;
 GLOBAL_STATE static float *zerobuf = (float *) NULL;
 GLOBAL_STATE static float *syncbuf = (float *) NULL;
 
-extern int buildCurrentTable(Baudio *, float);
+extern int buildCurrentTable(bAudio *, float);
 
 GLOBAL_STATE extern int s440holder;
 
 static int
-expGlobalController(Baudio *baudio, u_char controller,
+expGlobalController(bAudio *baudio, u_char controller,
 u_char operator, float value)
 {
 #ifdef DEBUG
@@ -279,7 +279,7 @@ u_char operator, float value)
 }
 
 int
-operateExpPreops(audioMain *audiomain, Baudio *baudio,
+operateExpPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	bristolbzero(noisebuf, audiomain->segmentsize);
@@ -398,7 +398,7 @@ register int count, float c1)
 }
 
 int
-operateOneExpVoice(audioMain *audiomain, Baudio *baudio,
+operateOneExpVoice(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	register int samplecount = audiomain->samplecount, i;
@@ -820,7 +820,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-explorerPostops(audioMain *am, Baudio *ba, bristolVoice *v, register float *s)
+explorerPostops(audioMain *am, bAudio *ba, bristolVoice *v, register float *s)
 {
 	/* Output conditioning, prevents filter self oscillation from overdrive */
 	bufmerge(ba->leftbuf, 0.0, ba->leftbuf, 0.2, am->samplecount);
@@ -832,7 +832,7 @@ explorerPostops(audioMain *am, Baudio *ba, bristolVoice *v, register float *s)
 }
 
 static int
-destroyOneExpVoice(audioMain *audiomain, Baudio *baudio)
+destroyOneExpVoice(audioMain *audiomain, bAudio *baudio)
 {
 
 	/*
@@ -860,7 +860,7 @@ destroyOneExpVoice(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolExpInit(audioMain *audiomain, Baudio *baudio)
+bristolExpInit(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one bristolexplorer\n");
 	baudio->soundCount = 10; /* Number of operators in this voice (Exp) */

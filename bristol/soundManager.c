@@ -110,7 +110,7 @@ dropBristolOp(int op, bristolOP *palette[])
 }
 
 void
-printSoundList(Baudio *baudio, bristolSound *sound[])
+printSoundList(bAudio *baudio, bristolSound *sound[])
 {
 	int i;
 
@@ -138,7 +138,7 @@ printSoundList(Baudio *baudio, bristolSound *sound[])
  * voices we use.
  */
 void
-initSoundAlgo(int algo, int index, Baudio *baudio, audioMain *audiomain,
+initSoundAlgo(int algo, int index, bAudio *baudio, audioMain *audiomain,
 bristolSound *sound[])
 {
 	if (sound[index] != (bristolSound *) NULL)
@@ -157,7 +157,7 @@ bristolSound *sound[])
 }
 
 void
-freeSoundAlgo(Baudio *baudio, int algo, bristolSound *sound[])
+freeSoundAlgo(bAudio *baudio, int algo, bristolSound *sound[])
 {
 	if (algo >= baudio->soundCount)
 		return;

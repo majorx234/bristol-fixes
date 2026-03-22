@@ -188,7 +188,7 @@ extern void bristolMidiToGM2(int [128], int [128], u_char [128][128], bristolMid
 extern int bristolMidiRawToMsg(unsigned char *, int, int, int, bristolMidiMsg *);
 extern int midiMsgHandler(bristolMidiMsg *, audioMain *);
 
-extern int buildCurrentTable(Baudio *, float);
+extern int buildCurrentTable(bAudio *, float);
 
 #endif /* _BRISTOL_MIDI_H */
 

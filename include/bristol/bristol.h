@@ -370,7 +370,7 @@ typedef struct bristolParam {
 typedef struct BristolVoice {
 	struct BristolVoice *next;
 	struct BristolVoice *last;
-	struct BAudio *baudio;
+	struct bAudio *baudio;
 	int index;
 	unsigned int flags;
 	int offset;
@@ -429,6 +429,7 @@ typedef struct bristolIO {
 struct bristolOP;
 struct bristolOPParams;
 typedef int (*bristolAlgo)(struct bristolOP *, struct bristolOPParams *);
+typedef int (*bristolAlgo4)(struct audioMain *, struct bAudio *, bristolVoice *, float *);
 
 /*
  * These are used for templating, not for operational control. We could change
@@ -546,16 +547,17 @@ extern bristolIO *bristolIOinit(bristolIO **, int,  char *, int,  int);
 /*
  * Audio globals structure.
  */
-typedef struct BAudio {
-	struct BAudio *next;
-	struct BAudio *last;
+
+typedef struct bAudio {
+	struct bAudio *next;
+	struct bAudio *last;
 	int soundCount;
 	bristolSound **sound; /* operator instance sequences */
 	bristolSound **effect;
-	int (*param)(struct BAudio *, u_char, u_char, float); /* param change */
-	bristolAlgo preops; /* Pre polyphonic (ie, monophonic) voicing routine */
-	bristolAlgo operate; /* Polyphonic voice mixing routine */
-	bristolAlgo postops; /* Post polyphonic voicing routine: FX, etc. */
+	int (*param)(struct bAudio *, u_char, u_char, float); /* param change */
+	bristolAlgo4 preops; /* Pre polyphonic (ie, monophonic) voicing routine */
+	bristolAlgo4 operate; /* Polyphonic voice mixing routine */
+	bristolAlgo4 postops; /* Post polyphonic voicing routine: FX, etc. */
 	bristolAlgo destroy; /* Voice destruction routine */
 	bristolVoice *firstVoice;
 	int debuglevel;
@@ -565,7 +567,7 @@ typedef struct BAudio {
 	float contcontroller[MIDI_CONTROLLER_COUNT];
 	int GM2values[MIDI_CONTROLLER_COUNT];
 	/* We should put in a callback function here. */
-	int (*midi)(struct BAudio *, int, float); /* param change */
+	int (*midi)(struct bAudio *, int, float); /* param change */
 	chanPressMsg chanPress;
 	float chanpressure;
 	int sid;
@@ -622,10 +624,10 @@ typedef struct BAudio {
 		int high;
 		int extreme;
 	} notemap;
-} Baudio;
+} bAudio;
 
 typedef struct audioMain {
-	Baudio *audiolist;
+	bAudio *audiolist;
 	bristolVoice *playlist;
 	bristolVoice *playlast;
 	bristolVoice *freelist;
@@ -684,8 +686,8 @@ typedef struct audioMain {
 
 extern int cleanup(bristolOP *);
 
-extern Baudio *findBristolAudio(Baudio *, int, int);
-extern Baudio *findBristolAudioByChan(Baudio *, int);
+extern bAudio *findBristolAudio(bAudio *, int, int);
+extern bAudio *findBristolAudioByChan(bAudio *, int);
 extern int bufmerge(float *, float, float *, float, int);
 extern int bufadd(float *, float, int);
 extern int bufset(float *, float, int);
@@ -695,21 +697,21 @@ extern void * bristolmalloc0(size_t);
 extern void bristolfree(void *);
 extern void bristolbzero(void *, int);
 
-extern void alterAllNotes();
-extern int fillFreqTable();
-extern int fillFreqBuf();
+extern void alterAllNotes(bAudio);
+extern int fillFreqTable(bAudio *, bristolVoice *, float *, int,  int);
+extern int fillFreqBuf(bAudio *, struct BristolVoice *, float *, int,  int);
 
-extern void initSoundAlgo();
+extern void initSoundAlgo(int, int, bAudio *, audioMain *, bristolSound **);
 
 #ifndef NULL
 #define NULL 0
 #endif
 
-int bristolArpegReVoice(Baudio *, bristolVoice *, float);
-int bristolArpegReAudio(audioMain *, Baudio *);
-void bristolArpeggiatorInit(Baudio *);
+int bristolArpegReVoice(bAudio *, bristolVoice *, float);
+int bristolArpegReAudio(audioMain *, bAudio *);
+void bristolArpeggiatorInit(bAudio *);
 void bristolArpeggiator(audioMain *, bristolMidiMsg *);
-void bristolArpeggiatorNoteEvent(Baudio *, bristolMidiMsg *);
+void bristolArpeggiatorNoteEvent(bAudio *, bristolMidiMsg *);
 
 #endif /* _BRISTOL_H */
 

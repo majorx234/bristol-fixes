@@ -40,10 +40,10 @@
 #include "bristol.h"
 #include "bristolsonic6.h"
 
-extern int buildCurrentTable(Baudio *, float);
+extern int buildCurrentTable(bAudio *, float);
 
 static int
-sonic6GlobalController(Baudio *baudio, u_char controller,
+sonic6GlobalController(bAudio *baudio, u_char controller,
 u_char operator, float value)
 {
 	int ivalue = value * CONTROLLER_RANGE;
@@ -227,7 +227,7 @@ baudio->effect[0]->param->param[5].float_val);
 }
 
 int
-operateSonic6Preops(audioMain *audiomain, Baudio *baudio,
+operateSonic6Preops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	bristolbzero(SONICLOCAL->outbuf, audiomain->segmentsize);
@@ -329,7 +329,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOneSonic6Voice(audioMain *audiomain, Baudio *baudio,
+operateOneSonic6Voice(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 #ifdef DEBUG
@@ -730,7 +730,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateSonic6Postops(audioMain *audiomain, Baudio *baudio,
+operateSonic6Postops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	bufmerge(baudio->leftbuf, SONICLOCAL->mastervolume,
@@ -740,7 +740,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 static int
-destroyOneSonic6Voice(audioMain *audiomain, Baudio *baudio)
+destroyOneSonic6Voice(audioMain *audiomain, bAudio *baudio)
 {
 	printf("destroying Sonic-6\n");
 
@@ -762,7 +762,7 @@ destroyOneSonic6Voice(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolSonic6Init(audioMain *audiomain, Baudio *baudio)
+bristolSonic6Init(audioMain *audiomain, bAudio *baudio)
 {
 	printf("initialising Sonic-6\n");
 

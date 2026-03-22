@@ -33,7 +33,7 @@ GLOBAL_STATE static float *scratch = (float *) NULL;
 GLOBAL_STATE extern int s440holder;
 
 int
-bristolGlobalController(Baudio *baudio, u_char controller,
+bristolGlobalController(bAudio *baudio, u_char controller,
 u_char operator, float value)
 {
 #ifdef DEBUG
@@ -193,7 +193,7 @@ u_char operator, float value)
 }
 
 int
-operateOneMMVoiceFinal(audioMain *audiomain, Baudio *baudio,
+operateOneMMVoiceFinal(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	register int samplecount = audiomain->samplecount, i;
@@ -496,7 +496,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 static int
-destroyOneMMVoice(audioMain *audiomain, Baudio *baudio)
+destroyOneMMVoice(audioMain *audiomain, bAudio *baudio)
 {
 printf("removing one mini\n");
 
@@ -524,7 +524,7 @@ printf("removing one mini\n");
 }
 
 int
-bristolMMInit(audioMain *audiomain, Baudio *baudio)
+bristolMMInit(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one bristolmini\n");
 	baudio->soundCount = 8; /* Number of operators in this voice (MM) */

@@ -32,14 +32,14 @@ GLOBAL_STATE static float *tmpbuf4 = (float *) NULL;
 #define HAMMOND_VIBRA 0x01
 #define HAMMOND_SERMON 0x02
 
-extern int bristolGlobalController(struct BAudio *, u_char, u_char, float);
+extern int bristolGlobalController(struct bAudio *, u_char, u_char, float);
 extern int initthesermon(int, int, int);
 
 GLOBAL_STATE static int sineform = 0, samplecount, samplerate;
 static int operateHammondPostops();
 
 int
-hammondGlobalController(Baudio *baudio, u_char controller,
+hammondGlobalController(bAudio *baudio, u_char controller,
 u_char operator, float value)
 {
 	/*
@@ -211,7 +211,7 @@ extern void therequiem(float *, float *, int);
 GLOBAL_STATE static int dosermon = 1;
 
 int
-operateHammondPreops(audioMain *audiomain, Baudio *baudio,
+operateHammondPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 /*	samplecount = audiomain->samplecount; */
@@ -226,7 +226,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateHammondB3Postops(audioMain *audiomain, Baudio *baudio,
+operateHammondB3Postops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	/*
@@ -257,7 +257,7 @@ GLOBAL_STATE static float pbHLast;
 GLOBAL_STATE static float pbLLast;
 
 static int
-operateHammondPostops(audioMain *audiomain, Baudio *baudio,
+operateHammondPostops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	int i, flags, samplecount = audiomain->samplecount;
@@ -377,7 +377,7 @@ bristolVoice *voice, register float *startbuf)
  * gain and mix them all down.
  */
 int
-operateOneHammondVoice(audioMain *audiomain, Baudio *baudio,
+operateOneHammondVoice(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	int samplecount = audiomain->samplecount;
@@ -465,7 +465,7 @@ bristolVoice *voice, register float *startbuf)
  * This also manages the bass pedalboard.
  */
 int
-operateOneHammondB3Voice(audioMain *audiomain, Baudio *baudio,
+operateOneHammondB3Voice(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 #ifdef DEBUG
@@ -553,7 +553,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-destroyOneHammondVoice(audioMain *audiomain, Baudio *baudio)
+destroyOneHammondVoice(audioMain *audiomain, bAudio *baudio)
 {
 printf("removing hammond sound\n");
 //	bristolfree(tmpbuf1);
@@ -564,7 +564,7 @@ printf("removing hammond sound\n");
 }
 
 int
-destroyOneHammondB3Voice(audioMain *audiomain, Baudio *baudio)
+destroyOneHammondB3Voice(audioMain *audiomain, bAudio *baudio)
 {
 printf("removing B3 sound\n");
 //	bristolfree(tmpbuf3);
@@ -578,7 +578,7 @@ printf("removing B3 sound\n");
 }
 
 int
-bristolHammondInit(audioMain *audiomain, Baudio *baudio)
+bristolHammondInit(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one hammond sound\n");
 
@@ -658,7 +658,7 @@ printf("initialising one hammond sound\n");
 }
 
 int
-bristolHammondB3Init(audioMain *audiomain, Baudio *baudio)
+bristolHammondB3Init(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one hammond second manual\n");
 

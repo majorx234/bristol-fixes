@@ -49,7 +49,7 @@ GLOBAL_STATE static float *mg1buf = (float *) NULL;
 GLOBAL_STATE static float *mg2buf = (float *) NULL;
 
 int
-polyController(Baudio *baudio, u_char operator, u_char controller, float value)
+polyController(bAudio *baudio, u_char operator, u_char controller, float value)
 {
 	int ivalue = value * CONTROLLER_RANGE;
 	pmods *mods = (pmods *) baudio->mixlocals;
@@ -275,7 +275,7 @@ polyController(Baudio *baudio, u_char operator, u_char controller, float value)
  * for restrikes.
  */
 static void
-polyNoteOn(audioMain *audiomain, Baudio *baudio, bristolVoice *voice)
+polyNoteOn(audioMain *audiomain, bAudio *baudio, bristolVoice *voice)
 {
 	pmods *mods = ((pmods *) baudio->mixlocals);
 	int i = 0;
@@ -637,7 +637,7 @@ polyNoteOn(audioMain *audiomain, Baudio *baudio, bristolVoice *voice)
 }
 
 static void
-polyNoteOff(audioMain *audiomain, Baudio *baudio, bristolVoice *voice)
+polyNoteOff(audioMain *audiomain, bAudio *baudio, bristolVoice *voice)
 {
 	pmods *mods = ((pmods *) baudio->mixlocals);
 	int i = 0;
@@ -900,7 +900,7 @@ polyNoteOff(audioMain *audiomain, Baudio *baudio, bristolVoice *voice)
  * Preops will do noise, and one oscillator - the LFO.
  */
 int
-operatePolyPreops(audioMain *audiomain, Baudio *baudio,
+operatePolyPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 #ifdef DEBUG
@@ -1001,7 +1001,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOnePoly(audioMain *audiomain, Baudio *baudio,
+operateOnePoly(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	register int sc = audiomain->samplecount, o_act = 0, oper, kh;
@@ -1477,7 +1477,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operatePolyPostops(audioMain *audiomain, Baudio *baudio,
+operatePolyPostops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	if ((voice->flags & BRISTOL_KEYDONE) || (baudio->mixflags & P_CHORD_OFF))
@@ -1503,14 +1503,14 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-bristolPolyDestroy(audioMain *audiomain, Baudio *baudio)
+bristolPolyDestroy(audioMain *audiomain, bAudio *baudio)
 {
 	printf("removing one poly\n");
 	return(0);
 }
 
 int
-bristolPolyInit(audioMain *audiomain, Baudio *baudio)
+bristolPolyInit(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one mono/poly\n");
 	/*

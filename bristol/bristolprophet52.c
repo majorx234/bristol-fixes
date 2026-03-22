@@ -24,10 +24,10 @@
 #include "bristolprophet.h"
 
 extern int
-bristolProphetInitModel(audioMain *audiomain, Baudio *baudio, int model);
+bristolProphetInitModel(audioMain *audiomain, bAudio *baudio, int model);
 
 int
-bristolProphet52Init(audioMain *audiomain, Baudio *baudio)
+bristolProphet52Init(audioMain *audiomain, bAudio *baudio)
 {
 	return bristolProphetInitModel(audiomain, baudio, 52);
 }

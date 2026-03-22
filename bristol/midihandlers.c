@@ -34,7 +34,7 @@ extern void sustainedNotesOff();
 extern void sustainedNotesOff();
 extern int bristolSystem(audioMain *, bristolMidiMsg *);
 
-int buildCurrentTable(Baudio *, float);
+int buildCurrentTable(bAudio *, float);
 
 bristolVoice *
 findVoice(bristolVoice *voice, int key, int chan)
@@ -45,7 +45,7 @@ findVoice(bristolVoice *voice, int key, int chan)
 /*printf("findVoice(%i, %i, %i) [%x]\n", voice->index,key,chan,voice->baudio); */
 
 	if ((voice->key.key == key)
-		&& (voice->baudio != (Baudio *) NULL)
+		&& (voice->baudio != (bAudio *) NULL)
 		&& ((voice->baudio->midichannel == chan)
 			|| (voice->baudio->midichannel == BRISTOL_CHAN_OMNI)))
 		return(voice);
@@ -53,14 +53,14 @@ findVoice(bristolVoice *voice, int key, int chan)
 	return(findVoice(voice->next, key, chan));
 }
 
-Baudio *
-findBristolAudioByChan(Baudio *baudio, int chan)
+bAudio *
+findBristolAudioByChan(bAudio *baudio, int chan)
 {
 #ifdef DEBUG
 	printf("findBristolAudioByChan(%x, %i)\n", baudio, chan);
 #endif
 
-	if (baudio == (Baudio *) NULL)
+	if (baudio == (bAudio *) NULL)
 		return(NULL);
 
 	if ((baudio->midichannel == chan)
@@ -73,14 +73,14 @@ findBristolAudioByChan(Baudio *baudio, int chan)
 /*
  * This would probably be a lot faster as a while() loop.
  */
-Baudio *
-findBristolAudio(Baudio *baudio, int id, int channel)
+bAudio *
+findBristolAudio(bAudio *baudio, int id, int channel)
 {
 #ifdef DEBUG
 	printf("findBristolAudio(%x, %i, %i)\n", baudio, id, channel);
 #endif
 
-	if (baudio == (Baudio *) NULL)
+	if (baudio == (bAudio *) NULL)
 		return(NULL);
 
 /*	if ((baudio->controlid == id) */
@@ -131,7 +131,7 @@ midiControl(audioMain *audiomain, bristolMidiMsg *msg)
 {
 	int c_id;
 	float c_val;
-	Baudio *baudio = audiomain->audiolist;
+	bAudio *baudio = audiomain->audiolist;
 
 	c_id = msg->params.controller.c_id;
 	c_val = (float) msg->params.controller.c_val;
@@ -211,7 +211,7 @@ midiControl(audioMain *audiomain, bristolMidiMsg *msg)
 			baudio->midi(baudio,
 				msg->params.controller.c_id,
 				msg->params.controller.c_val);
-obxController(Baudio *baudio, u_char operator, u_char controller, float value)
+obxController(bAudio *baudio, u_char operator, u_char controller, float value)
 		 */
 
 		/*
@@ -317,7 +317,7 @@ int
 midiChannelPressure(audioMain *audiomain, bristolMidiMsg *msg)
 {
 	bristolVoice *voice = audiomain->playlist;
-	Baudio *baudio = audiomain->audiolist;
+	bAudio *baudio = audiomain->audiolist;
 
 #ifdef DEBUG
 	printf("midiChannelPressure(%i)\n", msg->params.channelpress.pressure);
@@ -355,7 +355,7 @@ midiChannelPressure(audioMain *audiomain, bristolMidiMsg *msg)
 }
 
 void
-doPitchWheel(Baudio *baudio)
+doPitchWheel(bAudio *baudio)
 {
 	float note = 1.0;
 	int i;
@@ -383,7 +383,7 @@ int
 midiPitchWheel(audioMain *audiomain, bristolMidiMsg *msg)
 {
 	float pitch;
-	Baudio *baudio = audiomain->audiolist;
+	bAudio *baudio = audiomain->audiolist;
 
 	pitch = (float) (msg->params.pitch.lsb + (msg->params.pitch.msb << 7));
 /*	
@@ -426,7 +426,7 @@ midiPitchWheel(audioMain *audiomain, bristolMidiMsg *msg)
 static int midiSystem(audioMain *audiomain, bristolMidiMsg *msg)
 {
 	float adjusted;
-	Baudio *baudio;
+	bAudio *baudio;
 
 	adjusted = ((float) (msg->params.bristol.valueLSB
 		+ (msg->params.bristol.valueMSB << 7))) / (CONTROLLER_RANGE - 1);
@@ -526,7 +526,7 @@ static int midiSystem(audioMain *audiomain, bristolMidiMsg *msg)
 		baudio = findBristolAudio(audiomain->audiolist,
 			msg->params.bristol.channel, 0);
 
-		if (baudio == (Baudio *) NULL)
+		if (baudio == (bAudio *) NULL)
 			return(0);
 
 		if (baudio->midiflags & BRISTOL_MIDI_DEBUG1)
@@ -578,7 +578,7 @@ static int midiSystem(audioMain *audiomain, bristolMidiMsg *msg)
  * all the oscillators.
  */
 int
-buildCurrentTable(Baudio *baudio, float gtune)
+buildCurrentTable(bAudio *baudio, float gtune)
 {
 	register int i;
 

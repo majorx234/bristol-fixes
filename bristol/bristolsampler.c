@@ -63,7 +63,7 @@ GLOBAL_STATE typedef struct jMods {
 GLOBAL_STATE extern int s440holder;
 
 int
-samplerController(Baudio *baudio, u_char operator,
+samplerController(bAudio *baudio, u_char operator,
 u_char controller, float value)
 {
 #ifdef DEBUG
@@ -189,7 +189,7 @@ printf("switch on %i\n", tval);
 }
 
 int
-samplerPreops(audioMain *audiomain, Baudio *baudio,
+samplerPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	register int samplecount = audiomain->samplecount, i;
@@ -324,7 +324,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOneSampler(audioMain *audiomain, Baudio *baudio,
+operateOneSampler(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	/*
@@ -587,7 +587,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-static bristolSamplerDestroy(audioMain *audiomain, Baudio *baudio)
+static bristolSamplerDestroy(audioMain *audiomain, bAudio *baudio)
 {
 printf("removing one sampler\n");
 	return(0);
@@ -602,7 +602,7 @@ printf("removing one sampler\n");
 }
 
 int
-bristolSamplerInit(audioMain *audiomain, Baudio *baudio)
+bristolSamplerInit(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one sampler\n");
 	baudio->soundCount = 9; /* Number of operators in this voice */

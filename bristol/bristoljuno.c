@@ -63,7 +63,7 @@ GLOBAL_STATE typedef struct jMods {
 GLOBAL_STATE extern int s440holder;
 
 int
-junoController(Baudio *baudio, u_char operator,
+junoController(bAudio *baudio, u_char operator,
 u_char controller, float value)
 {
 	int tval = value * C_RANGE_MIN_1;
@@ -211,7 +211,7 @@ u_char controller, float value)
 }
 
 int
-junoPreops(audioMain *audiomain, Baudio *baudio,
+junoPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	register int samplecount = audiomain->samplecount, i;
@@ -347,7 +347,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOneJuno(audioMain *audiomain, Baudio *baudio,
+operateOneJuno(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	/*
@@ -608,7 +608,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-static bristolJunoDestroy(audioMain *audiomain, Baudio *baudio)
+static bristolJunoDestroy(audioMain *audiomain, bAudio *baudio)
 {
 printf("removing one juno\n");
 	return(0);
@@ -624,7 +624,7 @@ printf("removing one juno\n");
 }
 
 int
-bristolJunoInit(audioMain *audiomain, Baudio *baudio)
+bristolJunoInit(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one juno\n");
 	baudio->soundCount = 9; /* Number of operators in this voice */

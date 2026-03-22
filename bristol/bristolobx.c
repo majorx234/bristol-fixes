@@ -47,7 +47,7 @@ GLOBAL_STATE static float *modsine = (float *) NULL;
 GLOBAL_STATE static float *lfosh = (float *) NULL;
 
 int
-obxController(Baudio *baudio, u_char operator, u_char controller, float value)
+obxController(bAudio *baudio, u_char operator, u_char controller, float value)
 {
 	int ivalue = value * CONTROLLER_RANGE;
 
@@ -242,7 +242,7 @@ obxController(Baudio *baudio, u_char operator, u_char controller, float value)
  * Preops will do noise, and one oscillator - the LFO.
  */
 int
-operateOBXPreops(audioMain *audiomain, Baudio *baudio,
+operateOBXPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	register int samplecount = audiomain->samplecount;
@@ -335,7 +335,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOneOBX(audioMain *audiomain, Baudio *baudio,
+operateOneOBX(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	register int samplecount = audiomain->samplecount;
@@ -631,7 +631,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOBXPostops(audioMain *audiomain, Baudio *baudio,
+operateOBXPostops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 /* Panning - this is for the OBX only. If pan is zero we don't have to do */
@@ -674,7 +674,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-bristolOBXDestroy(audioMain *audiomain, Baudio *baudio)
+bristolOBXDestroy(audioMain *audiomain, bAudio *baudio)
 {
 	printf("removing one obx\n");
 
@@ -721,7 +721,7 @@ bristolOBXDestroy(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolOBXInit(audioMain *audiomain, Baudio *baudio)
+bristolOBXInit(audioMain *audiomain, bAudio *baudio)
 {
 	printf("initialising one obx\n");
 	/*

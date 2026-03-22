@@ -32,8 +32,8 @@
 #include "bristolmm.h"
 #include "bristolmemorymoog.h"
 
-extern int buildCurrentTable(Baudio *, float);
-extern void doPitchWheel(Baudio *);
+extern int buildCurrentTable(bAudio *, float);
+extern void doPitchWheel(bAudio *);
 /*
  * Use of these memorymoog global buffers will be an issue with use of multiple
  * audio threads, unless we ensure a single thread deals with any given algo
@@ -56,7 +56,7 @@ GLOBAL_STATE static float *scratch = (float *) NULL;
 #define PEDAL2 baudio->contcontroller[11] /* GM-2 Expression pedal */
 
 int
-memorymoogController(Baudio *baudio, u_char operator, u_char controller, float value)
+memorymoogController(bAudio *baudio, u_char operator, u_char controller, float value)
 {
 	int ivalue = value * CONTROLLER_RANGE;
 
@@ -285,7 +285,7 @@ memorymoogController(Baudio *baudio, u_char operator, u_char controller, float v
 }
 
 int
-memorymoogPreops(audioMain *audiomain, Baudio *baudio,
+memorymoogPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	if (((mmMods *) baudio->mixlocals)->lfolocals == 0)
@@ -365,7 +365,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOneMemoryMoog(audioMain *audiomain, Baudio *baudio,
+operateOneMemoryMoog(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	float modval;
@@ -720,7 +720,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-memorymoogPostops(audioMain *audiomain, Baudio *baudio,
+memorymoogPostops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	float gain = ((mmMods *) baudio->mixlocals)->gain;
@@ -739,7 +739,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 static int
-bristolMemoryMoogDestroy(audioMain *audiomain, Baudio *baudio)
+bristolMemoryMoogDestroy(audioMain *audiomain, bAudio *baudio)
 {
 printf("removing one memorymoog\n");
 	return(0);
@@ -757,7 +757,7 @@ printf("removing one memorymoog\n");
 }
 
 int
-bristolMemoryMoogInit(audioMain *audiomain, Baudio *baudio)
+bristolMemoryMoogInit(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one memorymoog\n");
 

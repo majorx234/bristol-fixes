@@ -29,7 +29,7 @@
  * the mixer GUI.
  */
 int
-mixerController(Baudio *baudio, u_char operator,
+mixerController(bAudio *baudio, u_char operator,
 u_char controller, float value)
 {
 #ifdef DEBUG
@@ -98,7 +98,7 @@ u_char controller, float value)
 }
 
 int
-operateMixerPreops(audioMain *audiomain, Baudio *baudio,
+operateMixerPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 #ifdef DEBUG
@@ -110,7 +110,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOneMixer(audioMain *audiomain, Baudio *baudio,
+operateOneMixer(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 /*
@@ -121,7 +121,7 @@ printf("operateOneMixer(%x, %x, %x) %i\n",
 }
 
 static int
-bristolMixerDestroy(audioMain *audiomain, Baudio *baudio)
+bristolMixerDestroy(audioMain *audiomain, bAudio *baudio)
 {
 printf("removing one mixer\n");
 	return(0);
@@ -138,7 +138,7 @@ printf("removing one mixer\n");
  * such we may end up with a mixing thread and multiple synth threads.
  */
 int
-bristolMixerInit(audioMain *audiomain, Baudio *baudio)
+bristolMixerInit(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one mixer\n");
 	/*

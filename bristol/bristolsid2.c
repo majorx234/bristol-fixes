@@ -145,7 +145,7 @@ sid2dt(sid2mods *smods)
 }
 
 int
-sid2Controller(Baudio *baudio, u_char operator, u_char controller, float value)
+sid2Controller(bAudio *baudio, u_char operator, u_char controller, float value)
 {
 	int ivalue = value * CONTROLLER_RANGE;
 	sid2mods *smods = ((sid2mods *) baudio->mixlocals);
@@ -766,7 +766,7 @@ sid2AssignVoice(sid2mods *smods, int voice, int flags)
  *	flag the MIDI note as known,
  */
 static void
-sid2Poly1NoteLogic(Baudio *baudio, sid2mods *smods)
+sid2Poly1NoteLogic(bAudio *baudio, sid2mods *smods)
 {
 	int i, low = B_SID_VOICE_1, middle = B_SID_VOICE_2, high = B_SID_VOICE_3;
 
@@ -921,7 +921,7 @@ sid2Poly1NoteLogic(Baudio *baudio, sid2mods *smods)
  * with two voices where there is only one note.
  */
 static void
-sid2Poly3NoteLogic(Baudio *baudio, sid2mods *smods)
+sid2Poly3NoteLogic(bAudio *baudio, sid2mods *smods)
 {
 	int i, ac = 0;
 	//int occ = 0;
@@ -1018,7 +1018,7 @@ sid2Poly3NoteLogic(Baudio *baudio, sid2mods *smods)
  * with two voices where there is only one note.
  */
 static void
-sid2Poly4NoteLogic(Baudio *baudio, sid2mods *smods)
+sid2Poly4NoteLogic(bAudio *baudio, sid2mods *smods)
 {
 	int i, ac = 0;
 	//int occ = 0;
@@ -1199,7 +1199,7 @@ sid2CheckModTrigger(sid2mods *smods)
  * mono is probably already enough with 3 voices and up to 9 oscillators.
  */
 int
-operateOneSid2(audioMain *audiomain, Baudio *baudio,
+operateOneSid2(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	int vcount = 0, i, tmp3;
@@ -1795,7 +1795,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-static bristolSid2Destroy(audioMain *audiomain, Baudio *baudio)
+static bristolSid2Destroy(audioMain *audiomain, bAudio *baudio)
 {
 	printf("removing one sid2\n");
 
@@ -1809,7 +1809,7 @@ static bristolSid2Destroy(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolSid2Init(audioMain *audiomain, Baudio *baudio)
+bristolSid2Init(audioMain *audiomain, bAudio *baudio)
 {
 	printf("initialising sid2 driver\n");
 

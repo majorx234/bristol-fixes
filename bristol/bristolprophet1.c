@@ -50,7 +50,7 @@ GLOBAL_STATE static float *rampbuf = (float *) NULL;
 GLOBAL_STATE extern int s440holder;
 
 int
-pro1Controller(Baudio *baudio, u_char operator, u_char controller,
+pro1Controller(bAudio *baudio, u_char operator, u_char controller,
 float value)
 {
 	int ivalue = value * CONTROLLER_RANGE;
@@ -210,7 +210,7 @@ float value)
  * Preops will do noise, and one oscillator - the LFO.
  */
 int
-operatePro1Preops(audioMain *audiomain, Baudio *baudio,
+operatePro1Preops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	register int samplecount = audiomain->samplecount;
@@ -267,7 +267,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOnePro1(audioMain *audiomain, Baudio *baudio,
+operateOnePro1(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	register int samplecount = audiomain->samplecount, i;
@@ -546,14 +546,14 @@ bristolVoice *voice, register float *startbuf)
 
 /* Not used */
 int
-operatePro1Postops(audioMain *audiomain, Baudio *baudio,
+operatePro1Postops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	return(0);
 }
 
 int
-bristolPro1Destroy(audioMain *audiomain, Baudio *baudio)
+bristolPro1Destroy(audioMain *audiomain, bAudio *baudio)
 {
 printf("removing one pro1\n");
 /*
@@ -570,7 +570,7 @@ printf("removing one pro1\n");
 }
 
 int
-bristolPro1Init(audioMain *audiomain, Baudio *baudio)
+bristolPro1Init(audioMain *audiomain, bAudio *baudio)
 {
 	printf("initialising one pro1\n");
 

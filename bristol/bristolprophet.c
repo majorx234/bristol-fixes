@@ -49,7 +49,7 @@ GLOBAL_STATE static float *rampbuf = (float *) NULL;
 GLOBAL_STATE extern int s440holder;
 
 int
-prophetController(Baudio *baudio, u_char operator, u_char controller,
+prophetController(bAudio *baudio, u_char operator, u_char controller,
 float value)
 {
 	int ivalue = value * CONTROLLER_RANGE;
@@ -241,7 +241,7 @@ float value)
  * Preops will do noise, and one oscillator - the LFO.
  */
 int
-operateProphetPreops(audioMain *audiomain, Baudio *baudio,
+operateProphetPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	register float *bufptr;
@@ -336,7 +336,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOneProphet(audioMain *audiomain, Baudio *baudio,
+operateOneProphet(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	register int samplecount = audiomain->samplecount, i;
@@ -559,7 +559,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateProphetPostops(audioMain *audiomain, Baudio *baudio,
+operateProphetPostops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 /* Panning - this is for the OBX only. If pan is zero we don't have to do */
@@ -605,7 +605,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-bristolProphetDestroy(audioMain *audiomain, Baudio *baudio)
+bristolProphetDestroy(audioMain *audiomain, bAudio *baudio)
 {
 printf("removing one prophet\n");
 /*
@@ -621,7 +621,7 @@ printf("removing one prophet\n");
 }
 
 int
-bristolProphetInitModel(audioMain *audiomain, Baudio *baudio, int model)
+bristolProphetInitModel(audioMain *audiomain, bAudio *baudio, int model)
 {
 printf("initialising one prophet\n");
 	baudio->soundCount = 8; /* Number of operators in this voice (MM) */
@@ -691,7 +691,7 @@ printf("initialising one prophet\n");
 }
 
 int
-bristolProphetInit(audioMain *audiomain, Baudio *baudio)
+bristolProphetInit(audioMain *audiomain, bAudio *baudio)
 {
 	return bristolProphetInitModel(audiomain, baudio, 1);
 }

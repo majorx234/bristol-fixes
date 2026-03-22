@@ -29,8 +29,8 @@
 #include "dco.h"
 
 GLOBAL_STATE extern tableEntry defaultTable[];
-extern void freeBristolAudio();
-static void a440();
+extern void freeBristolAudio(audioMain *, bAudio *);
+static void a440(audioMain *, float *, int);
 
 #ifndef BRISTOL_SEMAPHORE
 extern void rbMidiNote(audioMain *, bristolMidiMsg *);

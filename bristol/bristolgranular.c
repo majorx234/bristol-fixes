@@ -62,11 +62,11 @@ GLOBAL_STATE static float *bus9buf = (float *) NULL;
 
 GLOBAL_STATE static float *busbuf[9];
 
-extern int bristolGlobalController(struct BAudio *, u_char, u_char, float);
-extern int buildCurrentTable(Baudio *, float);
+extern int bristolGlobalController(struct bAudio *, u_char, u_char, float);
+extern int buildCurrentTable(baudio *, float);
 
 int
-granularGlobalController(Baudio *baudio, u_char operator,
+granularGlobalController(bAudio *baudio, u_char operator,
 u_char controller, float value)
 {
 	/*
@@ -180,7 +180,7 @@ printf("noise flags are %i\n", (int) (value * CONTROLLER_RANGE));
 }
 
 int
-operateGranularPreops(audioMain *audiomain, Baudio *baudio,
+operateGranularPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 #ifdef DEBUG
@@ -230,7 +230,7 @@ modRoute(float *source, unsigned int flags, int sc)
  * Operate one granular voice.
  */
 int
-operateOneGranularVoice(audioMain *audiomain, Baudio *baudio,
+operateOneGranularVoice(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	int samplecount = audiomain->samplecount;
@@ -345,7 +345,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateGranularPostops(audioMain *audiomain, Baudio *baudio,
+operateGranularPostops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 #ifdef DEBUG
@@ -361,7 +361,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-destroyOneGranularVoice(audioMain *audiomain, Baudio *baudio)
+destroyOneGranularVoice(audioMain *audiomain, bAudio *baudio)
 {
 	baudio->mixlocals = NULL;
 	return(0);
@@ -378,7 +378,7 @@ destroyOneGranularVoice(audioMain *audiomain, Baudio *baudio)
 }
 
 int
-bristolGranularInit(audioMain *audiomain, Baudio *baudio)
+bristolGranularInit(audioMain *audiomain, bAudio *baudio)
 {
 	granularmods *mods;
 

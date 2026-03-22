@@ -34,7 +34,7 @@
 #define MULTI_TRIG		0x10000000
  */
 
-extern int buildCurrentTable(Baudio *, float);
+extern int buildCurrentTable(bAudio *, float);
 
 typedef struct MMods {
 	float mixnoise;

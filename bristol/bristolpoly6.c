@@ -42,7 +42,7 @@ GLOBAL_STATE static float *mgbuf = (float *) NULL;
 GLOBAL_STATE static float *lfobuf = (float *) NULL;
 
 int
-poly6Controller(Baudio *baudio, u_char operator, u_char controller, float value)
+poly6Controller(bAudio *baudio, u_char operator, u_char controller, float value)
 {
 	int ivalue = value * CONTROLLER_RANGE;
 
@@ -121,7 +121,7 @@ poly6Controller(Baudio *baudio, u_char operator, u_char controller, float value)
 }
 
 int
-poly6Preops(audioMain *audiomain, Baudio *baudio,
+poly6Preops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	register int samplecount = audiomain->samplecount, i;
@@ -257,7 +257,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateOnePoly6(audioMain *audiomain, Baudio *baudio,
+operateOnePoly6(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 /*printf("operateOnePoly6(%i, %x, %x)\n", voice->index, audiomain, baudio); */
@@ -382,7 +382,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-static bristolPoly6Destroy(audioMain *audiomain, Baudio *baudio)
+static bristolPoly6Destroy(audioMain *audiomain, bAudio *baudio)
 {
 printf("removing one poly6\n");
 	return(0);
@@ -398,7 +398,7 @@ printf("removing one poly6\n");
 }
 
 int
-bristolPoly6Init(audioMain *audiomain, Baudio *baudio)
+bristolPoly6Init(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising one poly6\n");
 	baudio->soundCount = 11; /* Number of operators in this voice */

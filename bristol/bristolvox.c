@@ -36,10 +36,10 @@ GLOBAL_STATE static float *bassenv = (float *) NULL;
 #define VOX_HIGH_NOTE	0x04
 #define VOX_LOW_NOTE	0x08
 
-extern int bristolGlobalController(struct BAudio *, u_char, u_char, float);
+extern int bristolGlobalController(struct bAudio *, u_char, u_char, float);
 
 int
-voxGlobalController(Baudio *baudio, u_char controller,
+voxGlobalController(bAudio *baudio, u_char controller,
 u_char operator, float value)
 {
 	/*
@@ -98,7 +98,7 @@ GLOBAL_STATE static int vibraDone = 0;
  * The Vox does still use its own preops, but only to clear the vibra flag.
  */
 int
-operateVoxM2Preops(audioMain *audiomain, Baudio *baudio,
+operateVoxM2Preops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	int flags;
@@ -143,7 +143,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateVoxPreops(audioMain *audiomain, Baudio *baudio,
+operateVoxPreops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	if (baudio->mixlocals == NULL)
@@ -162,7 +162,7 @@ bristolVoice *voice, register float *startbuf)
  * lower manual of the M-II.
  */
 int
-operateOneVoxVoice(audioMain *audiomain, Baudio *baudio,
+operateOneVoxVoice(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	int samplecount = audiomain->samplecount;
@@ -330,7 +330,7 @@ bristolVoice *voice, register float *startbuf)
  * bass oscillator.
  */
 int
-operateOneVoxM2Voice(audioMain *audiomain, Baudio *baudio,
+operateOneVoxM2Voice(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 	int samplecount = audiomain->samplecount;
@@ -384,7 +384,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateVoxPostops(audioMain *audiomain, Baudio *baudio,
+operateVoxPostops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 #ifdef DEBUG
@@ -423,7 +423,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-operateVoxM2Postops(audioMain *audiomain, Baudio *baudio,
+operateVoxM2Postops(audioMain *audiomain, bAudio *baudio,
 bristolVoice *voice, register float *startbuf)
 {
 #ifdef DEBUG
@@ -462,7 +462,7 @@ bristolVoice *voice, register float *startbuf)
 }
 
 int
-destroyOneVoxVoice(audioMain *audiomain, Baudio *baudio)
+destroyOneVoxVoice(audioMain *audiomain, bAudio *baudio)
 {
 	printf("removing one vox\n");
 
@@ -502,7 +502,7 @@ destroyOneVoxVoice(audioMain *audiomain, Baudio *baudio)
  * second manual of the M-II. The code is still kept in this file though.
  */
 int
-bristolVoxInit(audioMain *audiomain, Baudio *baudio)
+bristolVoxInit(audioMain *audiomain, bAudio *baudio)
 {
 	printf("initialising vox sound\n");
 
@@ -569,7 +569,7 @@ bristolVoxInit(audioMain *audiomain, Baudio *baudio)
  * single manual of the M-I.
  */
 int
-bristolVoxM2Init(audioMain *audiomain, Baudio *baudio)
+bristolVoxM2Init(audioMain *audiomain, bAudio *baudio)
 {
 printf("initialising vox upper manual\n");
 
