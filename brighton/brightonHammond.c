@@ -26,8 +26,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int hammondInit();
-static int hammondConfigure();
+static int hammondInit(brightonWindow *);
+static int hammondConfigure(brightonWindow *);
 static int hammondCallback(brightonWindow * , int, int, float);
 
 extern guimain global;
@@ -584,7 +584,7 @@ hammondCallback(brightonWindow * win, int panel, int index, float value)
 }
 
 static int
-hammondNull()
+hammondNull(void *, int,  int,  int,  int,  int)
 {
 	return(0);
 }

@@ -28,8 +28,8 @@
 #include "brightonMixer.h"
 #include "brightonMixerMemory.h"
 
-static int mixInit();
-static int mixConfigure();
+static int mixInit(brightonWindow *);
+static int mixConfigure(brightonWindow *);
 static int mixCallback(brightonWindow *, int, int, float);
 
 extern guimain global;

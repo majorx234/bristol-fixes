@@ -30,16 +30,18 @@
 #define BRIGHTON_LNP 1
 #define BRIGHTON_HNP 2
 
-extern int configureGlobals();
-extern int initConnection();
+struct guiMain;
+struct guiSynth;
+extern int configureGlobals(struct guiSynth *);
+extern int initConnection(struct guiMain *, struct guiSynth *);
 
-extern void cleanupBristol();
-extern void cleanupBristolQuietly();
+extern void cleanupBristol(int);
+extern void cleanupBristolQuietly(int);
 
-extern int bristolMidiSendControlMsg();
-extern int bristolMidiSendNRP();
-extern int bristolMidiSendRP();
-extern int bristolMidiSendMsg();
+extern int bristolMidiSendControlMsg(int, int, int, int);
+extern int bristolMidiSendNRP(int, int, int, int);
+extern int bristolMidiSendRP(int, int, int, int);
+extern int bristolMidiSendMsg(int, int, int, int, int);
 extern int destroySynth(brightonWindow *);
 
 typedef int (*synthRoutine)(void *, int, int, int, int, int);
@@ -92,8 +94,8 @@ typedef struct Memory {
 #define GUI_NRP				0x00020000
 #define NO_LATCHING_KEYS	0x00040000
 
-typedef struct GuiSynth {
-	struct GuiSynth *next, *last;
+typedef struct guiSynth {
+	struct guiSynth *next, *last;
 	unsigned int flags;
 	char name[32];
 	int sid;

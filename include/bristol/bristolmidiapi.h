@@ -33,8 +33,9 @@
 #include "bristolmessages.h"
 
 struct bristolMidiMsg;
+struct guiMain;
 
-extern int bristolMidiOpen(char*, int, int, int, int(*)(struct bristolMidiMsg*, void*), void*);
+extern int bristolMidiOpen(char*, int, int, int, int(*)(struct bristolMidiMsg*, struct guiMain *), void*);
 extern int bristolMidiClose(int);
 extern int bristolMidiRead(int, struct bristolMidiMsg *);
 extern int bristolMidiRawWrite(int, struct bristolMidiMsg *, int);

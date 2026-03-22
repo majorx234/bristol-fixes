@@ -27,8 +27,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int memMoogInit();
-static int memMoogConfigure();
+static int memMoogInit(brightonWindow *);
+static int memMoogConfigure(brightonWindow *);
 static int memMoogCallback(brightonWindow *, int, int, float);
 static int memMoogModCallback(brightonWindow *, int, int, float);
 static int MMmidiCallback(brightonWindow *, int, int, float);

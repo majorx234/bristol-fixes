@@ -26,8 +26,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int rBassInit();
-static int rBassConfigure();
+static int rBassInit(brightonWindow *);
+static int rBassConfigure(brightonWindow *);
 static int rBassCallback(brightonWindow *, int, int, float);
 static int rBassMidiCallback(brightonWindow *, int, int, float);
 

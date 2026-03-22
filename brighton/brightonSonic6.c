@@ -42,8 +42,8 @@
 
 int initmem = 0;
 
-int sonic6Init();
-int sonic6Configure();
+int sonic6Init(brightonWindow *);
+int sonic6Configure(brightonWindow *);
 int sonic6Callback(brightonWindow *, int, int, float);
 static int midiCallback(brightonWindow *, int, int, float);
 static int sonic6ModCallback(brightonWindow *, int, int, float);

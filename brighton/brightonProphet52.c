@@ -29,8 +29,8 @@
 
 static int initmem;
 
-static int prophet52Init();
-static int prophet52Configure();
+static int prophet52Init(brightonWindow *);
+static int prophet52Configure(brightonWindow *);
 static int prophet52Callback(brightonWindow *, int, int, float);
 /*static int keyCallback(brightonWindow *, int, int, float); */
 /*static int modCallback(brightonWindow *, int, int, float); */

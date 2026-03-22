@@ -28,8 +28,8 @@
 
 static int initmem;
 
-static int prophetInit();
-static int prophetConfigure();
+static int prophetInit(brightonWindow *);
+static int prophetConfigure(brightonWindow *);
 static int prophetCallback(brightonWindow *, int, int, float);
 /*static int keyCallback(void *, int, int, float); */
 /*static int modCallback(void *, int, int, float); */

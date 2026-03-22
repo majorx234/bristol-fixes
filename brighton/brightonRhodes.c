@@ -26,8 +26,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int rhodesInit();
-static int rhodesConfigure();
+static int rhodesInit(brightonWindow *);
+static int rhodesConfigure(brightonWindow *);
 static int rhodesCallback(brightonWindow *, int, int, float);
 static int rhodesMidiCallback(brightonWindow *, int, int, float);
 

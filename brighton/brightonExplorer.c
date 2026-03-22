@@ -56,8 +56,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-int explorerInit();
-int explorerConfigure();
+int explorerInit(struct brightonWindow *);
+int explorerConfigure(struct brightonWindow *);
 int explorerCallback(brightonWindow *, int, int, float);
 static int midiCallback(brightonWindow *, int, int, float);
 

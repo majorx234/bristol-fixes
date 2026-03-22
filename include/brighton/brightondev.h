@@ -28,6 +28,7 @@ struct brightonIResource;
 typedef int (*brightonCallback)(struct brightonWindow *, int, int, float);
 //typedef int (*brightonRoutine)(struct brightonWindow *, struct brightonIResource*, struct brightonEvent*);
 typedef int (*brightonRoutine)(struct brightonWindow *, struct brightonEvent*);
+typedef int (*brightonRoutine1)(struct brightonWindow *);
 typedef int (*brightonRoutine2)(struct brightonWindow *, struct brightonIResource*, struct brightonEvent*);
 
 typedef struct brightonILocations {
@@ -48,7 +49,7 @@ typedef struct brightonIResource {
 	struct brightonBitmap *surface;
 	struct brightonBitmap *canvas;
 	unsigned int flags;
-	brightonRoutine init;
+	brightonRoutine1 init;
 	brightonRoutine2 configure;
 	brightonCallback callback;
 	int x, y, width, height;
@@ -59,7 +60,7 @@ typedef struct brightonIResource {
 
 typedef struct brightonIApp {
 	unsigned int flags;
-	brightonRoutine init;
+	brightonRoutine1 init;
 	int width, height;
 	int nresources;
 	brightonIResource *resources; /* This is actually a pointer to an array */

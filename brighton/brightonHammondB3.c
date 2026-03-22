@@ -26,14 +26,14 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int hammondB3Init();
-static int hammondB3Configure();
+static int hammondB3Init(brightonWindow *);
+static int hammondB3Configure(brightonWindow *);
 static int hammondB3MidiCallback(brightonWindow *, int, int, float);
 static int hammondB3Callback(brightonWindow *, int, int, float);
-static int hammondB3destroy();
+static int hammondB3destroy(brightonWindow *);
 /*static int keyCallback(void *, int, int, float); */
 /*static int modCallback(void *, int, int, float); */
-static void doClick();
+static void doClick(guiSynth *);
 
 static int dc = 0, shade_id;
 

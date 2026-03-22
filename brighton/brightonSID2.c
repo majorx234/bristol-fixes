@@ -27,8 +27,8 @@
 
 #include "brightonSID2.h"
 
-static int sid2Init();
-static int sid2Configure();
+static int sid2Init(brightonWindow *);
+static int sid2Configure(brightonWindow *);
 static int sid2Callback(brightonWindow *, int, int, float);
 static int sid2ModCallback(brightonWindow *, int, int, float);
 static int midiCallback(brightonWindow *, int, int, float);

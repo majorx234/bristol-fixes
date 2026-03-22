@@ -29,8 +29,8 @@
 
 static int initmem;
 
-static int odysseyInit();
-static int odysseyConfigure();
+static int odysseyInit(brightonWindow *);
+static int odysseyConfigure(brightonWindow *);
 static int odysseyCallback(brightonWindow *, int, int, float);
 /*static int keyCallback(void *, int, int, float); */
 static int odysseyMemory(brightonWindow *, int, int, float);

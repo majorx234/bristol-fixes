@@ -56,8 +56,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int poly800Init();
-static int poly800Configure();
+static int poly800Init(brightonWindow *);
+static int poly800Configure(brightonWindow *);
 static int poly800Callback(brightonWindow *, int, int, float);
 static int midiCallback(brightonWindow *, int, int, float);
 static int poly800KeyCallback(brightonWindow *, int, int, float);

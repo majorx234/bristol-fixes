@@ -90,8 +90,8 @@
 
 static int initmem = 0;
 
-int stratusInit();
-int stratusConfigure();
+int stratusInit(brightonWindow *);
+int stratusConfigure(brightonWindow *);
 int stratusCallback(brightonWindow *, int, int, float);
 /*static int keyCallback(void *, int, int, float); */
 int stratusModCallback(brightonWindow *, int, int, float);

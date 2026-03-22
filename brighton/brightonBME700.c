@@ -46,8 +46,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int BME700Init();
-static int BME700Configure();
+static int BME700Init(brightonWindow *);
+static int BME700Configure(brightonWindow *);
 static int BME700Callback(brightonWindow *, int, int, float);
 static int BME700ModCallback(brightonWindow *, int, int, float);
 static int midiCallback(brightonWindow *, int, int, float);

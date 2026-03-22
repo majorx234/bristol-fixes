@@ -54,8 +54,8 @@
 #include "brightoninternals.h"
 #include "brightonledstates.h"
 
-static int bmInit();
-static int bmConfigure();
+static int bmInit(brightonWindow *);
+static int bmConfigure(brightonWindow *);
 static int bmCallback(brightonWindow *, int, int, float);
 
 extern guimain global;

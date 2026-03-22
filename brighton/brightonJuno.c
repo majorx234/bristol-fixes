@@ -26,8 +26,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int junoInit();
-static int junoConfigure();
+static int junoInit(brightonWindow *);
+static int junoConfigure(brightonWindow *);
 static int junoCallback(brightonWindow *, int, int, float);
 static int midiCallback(brightonWindow *, int, int, float);
 

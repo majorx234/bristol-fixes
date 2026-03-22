@@ -27,8 +27,8 @@
 
 static int initmem;
 
-static int obxInit();
-static int obxConfigure();
+static int obxInit(brightonWindow *);
+static int obxConfigure(brightonWindow *);
 static int obxCallback(brightonWindow *, int, int, float);
 /*static int keyCallback(void *, int, int, float); */
 static int obxModCallback(brightonWindow *, int, int, float);

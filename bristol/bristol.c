@@ -83,8 +83,7 @@ static char *bImport = NULL;
 int sessmgrmode = 1;
 volatile sig_atomic_t ladiRequest = 0;
 
-static void
-savehandler()
+static void savehandler(int value)
 {
 	if (sessmgrmode)
 		ladiRequest = 1;
@@ -95,8 +94,7 @@ savehandler()
 /*
  * LADI does not support this, neither is it likely to
  */
-static void
-loadhandler()
+static void loadhandler(int)
 {
 	if (sessmgrmode)
 		ladiRequest = 2;
@@ -104,8 +102,7 @@ loadhandler()
 		ladiRequest = 0;
 }
 
-static void
-buildCmdLine(audioMain *audiomain, int argc, char **argv)
+static void buildCmdLine(audioMain *audiomain, int argc, char **argv)
 {
 	int size = 14, i, haveport = 0;
 
@@ -167,8 +164,7 @@ buildCmdLine(audioMain *audiomain, int argc, char **argv)
  * It could make sense to move the threads requests into the MIDI library for
  * use with other programmes?
  */
-int
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	int argCount = 1, harmonics = 31, logtype = BRISTOL_LOG_BRISTOL;
 	int pstatus=-129;
@@ -1012,8 +1008,7 @@ pthread_t spawnThread(void * (*threadcode)(void *), int priority)
 	return(thread);
 }
 
-void
-midithreadexit()
+void midithreadexit()
 {
 	printf("Null palette\n");
 	audiomain.atReq = BRISTOL_REQSTOP;
@@ -1024,8 +1019,7 @@ midithreadexit()
 	pthread_exit(0);
 }
 
-void
-inthandler()
+void inthandler()
 {
 	int i = 50;
 
@@ -1046,8 +1040,7 @@ inthandler()
 	bristolMidiTerminate();
 }
 
-void
-alterAllNotes(Baudio *baudio)
+void alterAllNotes(Baudio *baudio)
 {
 	bristolVoice *voice = audiomain.playlist;
 

@@ -25,8 +25,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int realisticInit();
-static int realisticConfigure();
+static int realisticInit(brightonWindow *);
+static int realisticConfigure(brightonWindow *);
 static int realisticCallback(brightonWindow *, int, int, float);
 static int realisticMidiCallback(brightonWindow *, int, int, float);
 

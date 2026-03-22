@@ -127,25 +127,25 @@ typedef struct Menu {
 int currentMenu = -1;
 int currentTrack = 0;
 
-char *setInt0()
+char *setInt0(guiSynth *synth)
 {
 	vuInterval = 0;
 	return(NULL);
 }
 
-char *setInt50()
+char *setInt50(guiSynth *synth)
 {
 	vuInterval = 50000;
 	return(NULL);
 }
 
-char *setInt100()
+char *setInt100(guiSynth *synth)
 {
 	vuInterval = 100000;
 	return(NULL);
 }
 
-char *setInt200()
+char *setInt200(guiSynth *synth)
 {
 	vuInterval = 200000;
 	return(NULL);

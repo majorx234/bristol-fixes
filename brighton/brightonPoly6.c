@@ -30,8 +30,8 @@
 
 static int initmem, width;
 
-static int poly6Init();
-static int poly6Configure();
+static int poly6Init(brightonWindow *);
+static int poly6Configure(brightonWindow *);
 static int poly6Callback(brightonWindow *, int, int, float);
 static int poly6ModCallback(brightonWindow *, int, int, float);
 static int midiCallback(brightonWindow *, int, int, float);

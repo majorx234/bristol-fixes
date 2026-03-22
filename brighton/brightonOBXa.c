@@ -30,12 +30,12 @@
 
 static int initmem;
 
-extern void *brightonmalloc();
+extern void *brightonmalloc(size_t);
 
 static int splitPoint = -1, width = 0;
 
-static int obxaInit();
-static int obxaConfigure();
+static int obxaInit(brightonWindow *);
+static int obxaConfigure(brightonWindow *);
 static int obxaCallback(brightonWindow *, int, int, float);
 static int obxaModCallback(brightonWindow *, int, int, float);
 static int obxaKeyCallback(brightonWindow *, int, int, float);

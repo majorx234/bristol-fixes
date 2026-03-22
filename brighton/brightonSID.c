@@ -25,8 +25,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int sidInit();
-static int sidConfigure();
+static int sidInit(brightonWindow *);
+static int sidConfigure(brightonWindow *);
 static int sidCallback(brightonWindow *, int, int, float);
 static int sidModCallback(brightonWindow *, int, int, float);
 static int midiCallback(brightonWindow *, int, int, float);

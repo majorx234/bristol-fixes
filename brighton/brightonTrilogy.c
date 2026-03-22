@@ -36,8 +36,8 @@
 #include "brighton.h"
 #include "brightonMini.h"
 
-extern int stratusInit();
-extern int stratusConfigure();
+extern int stratusInit(brightonWindow *);
+extern int stratusConfigure(brightonWindow *);
 extern int stratusCallback(brightonWindow *, int, int, float);
 extern int stratusModCallback(brightonWindow *, int, int, float);
 extern int stratusMidiCallback(brightonWindow *, int, int, float);

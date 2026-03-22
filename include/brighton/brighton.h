@@ -58,8 +58,8 @@ typedef struct brightonResource {
 	char *image;
 	char *surface;
 	unsigned int flags;
-	brightonRoutine init;
-	brightonRoutine configure;
+	brightonRoutine1 init;
+	brightonRoutine1 configure;
 	brightonCallback callback;
 	int x, y, width, height;
 	int ndevices;
@@ -85,10 +85,10 @@ typedef struct BrightonApp {
 	char *image;
 	char *surface;
 	unsigned int flags;
-	brightonRoutine init;
-	brightonRoutine configure;
+	brightonRoutine1 init;
+	brightonRoutine1 configure;
 	brightonCallback callback;
-	brightonRoutine destroy;
+	brightonRoutine1 destroy;
 	brightonEmulation emulate;
 	int width, height, x, y;
 	/*

@@ -29,8 +29,8 @@
 
 static int initmem;
 
-static int axxeInit();
-static int axxeConfigure();
+static int axxeInit(struct brightonWindow *);
+static int axxeConfigure(struct brightonWindow *);
 static int axxeCallback(brightonWindow *, int, int, float);
 /*static int keyCallback(void *, int, int, float); */
 static int midiCallback(brightonWindow *, int, int, float);

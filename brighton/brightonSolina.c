@@ -26,8 +26,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int solinaInit();
-static int solinaConfigure();
+static int solinaInit(brightonWindow *);
+static int solinaConfigure(brightonWindow *);
 static int solinaCallback(brightonWindow *, int, int, float);
 static int midiCallback(brightonWindow *, int, int, float);
 

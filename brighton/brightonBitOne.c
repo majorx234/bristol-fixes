@@ -25,8 +25,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int bitoneInit();
-static int bitoneConfigure();
+static int bitoneInit(brightonWindow *);
+static int bitoneConfigure(brightonWindow *);
 static int bitoneCallback(brightonWindow *, int, int, float);
 static int midiCallback(brightonWindow *, int, int, float);
 static int bitoneExtendedEntry(guiSynth *, int, int, int, int, int);

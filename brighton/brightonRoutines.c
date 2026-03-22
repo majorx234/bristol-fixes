@@ -37,7 +37,8 @@
 
 extern guimain global;
 
-extern void brightonMidiInput(bristolMidiMsg *, guimain *);
+struct guiMain;
+extern int brightonMidiInput(bristolMidiMsg *, struct guiMain *);
 
 struct sockaddr address;
 
@@ -45,8 +46,7 @@ struct sockaddr address;
  * Free any memory we have have used up, close the link to the control socket
  * potentially sending a disconnect request.
  */
-void
-cleanupBristolQuietly()
+void cleanupBristolQuietly(int value)
 {
 	/*
 	 * This comes from a sigpipe only. This means we have lost our socket to
@@ -62,11 +62,10 @@ cleanupBristolQuietly()
 	 */
 	signal(SIGPIPE, SIG_DFL);
 	signal(SIGINT, SIG_DFL);
-	cleanupBristol();
+	cleanupBristol(0);
 }
 
-void
-cleanupBristol()
+void cleanupBristol(int value)
 {
 	bristolMidiMsg msg;
 
@@ -879,7 +878,7 @@ connectengine(guimain *global)
 		printf("opening link to engine: %i\n", global->port);
 		if ((global->controlfd = bristolMidiOpen(global->host,
 			flags, global->port, -1, brightonMidiInput, global)) < 0)
-			cleanupBristol();
+			cleanupBristol(0);
 	} else
 		printf("%s already active (%i)\n", BRISTOL_ENGINE, global->controlfd);
 }

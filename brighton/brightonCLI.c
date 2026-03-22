@@ -139,6 +139,7 @@ static char *b_blank = "                                                        
 extern void printBrightonHelp(int);
 
 typedef int (*clicom)();
+typedef int (*clicom3)(struct guiMain *, int,  char **);
 
 static int bttyInterpret(guimain *, char *);
 static int execHelp(guimain *, int, char **);
@@ -177,12 +178,12 @@ static void bttyMemSave(guimain *);
 #define B_COM_EXPORT	5
 #define B_COM_FORCE		6
 
-typedef struct CommSet {
+typedef struct comSet {
 	char name[12];
 	int map;
 	char help[B_TTY_LINE_LEN];
-	clicom exec;
-	struct CommSet *subcom;
+	clicom3 exec;
+	struct comSet *subcom;
 } comSet;
 
 comSet brightoncom[4] = {

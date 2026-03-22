@@ -29,8 +29,8 @@
 
 static int initmem, width;
 
-static int polyInit();
-static int polyConfigure();
+static int polyInit(brightonWindow *);
+static int polyConfigure(brightonWindow *);
 static int polyCallback(brightonWindow *, int, int, float);
 /*static int keyCallback(void *, int, int, float); */
 static int polyModCallback(brightonWindow *, int, int, float);

@@ -27,8 +27,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int arp2600Init();
-static int arp2600Configure();
+static int arp2600Init(brightonWindow *);
+static int arp2600Configure(brightonWindow*);
 static int arp2600Callback(brightonWindow *, int, int, float);
 /*static int keyCallback(void *, int, int, float); */
 static int arp2600MidiCallback(brightonWindow *, int, int, float);

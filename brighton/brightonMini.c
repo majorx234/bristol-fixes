@@ -27,8 +27,8 @@
 #include "bristolmidi.h"
 #include "brightoninternals.h"
 
-static int miniInit();
-static int miniConfigure();
+static int miniInit(brightonWindow *);
+static int miniConfigure(brightonWindow *);
 static int midiCallback(brightonWindow *, int, int, float);
 static int miniCallback(brightonWindow * , int, int, float);
 

@@ -26,8 +26,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int dxInit();
-static int dxConfigure();
+static int dxInit(struct brightonWindow *);
+static int dxConfigure(struct brightonWindow *);
 static int dxCallback(brightonWindow * , int, int, float);
 static int dxMidiCallback(brightonWindow * , int, int, float);
 

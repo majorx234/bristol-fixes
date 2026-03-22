@@ -102,7 +102,7 @@ typedef struct bristolMidiHandle {
 	int dev;
 	unsigned int flags;
 	int messagemask;
-	int (*callback)(bristolMidiMsg*, void*);
+	int (*callback)(bristolMidiMsg*, struct guiMain *);
 	void *param;
 } bristolMidiHandle;
 

@@ -23,16 +23,17 @@
 
 //#include "bristol.h"
 struct audioMain;
+struct bristolOP;
 
-extern int bristolAudioOpen();
+
+extern int bristolAudioOpen(char *, int, int, int);
 extern void initAudioThread(struct audioMain*);
-extern int bristolAudioWrite();
+extern int bristolAudioWrite(float *, int);
 extern int bristolAudioStart();
-extern int bristolAudioRead();
+extern int bristolAudioRead(float *, register int);
 extern int bristolAudioClose();
 extern int doAudioOps(struct audioMain *, float *, float*);
 extern void freeSoundAlgo();
-
-extern int bristolOPprint();
+extern int bristolOPprint(struct bristolOP *);
 
 #endif

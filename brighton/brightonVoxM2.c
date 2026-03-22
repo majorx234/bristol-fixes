@@ -26,8 +26,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int voxM2Init();
-static int voxM2Configure();
+static int voxM2Init(brightonWindow *);
+static int voxM2Configure(brightonWindow *);
 static int voxM2Callback(brightonWindow *, int, int, float);
 static int midiCallback(brightonWindow *, int, int, float);
 

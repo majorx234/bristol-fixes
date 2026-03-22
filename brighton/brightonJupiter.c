@@ -27,8 +27,8 @@
 
 #include "bristolarpeggiation.h"
 
-static int jupiterInit();
-static int jupiterConfigure();
+static int jupiterInit(brightonWindow *);
+static int jupiterConfigure(brightonWindow *);
 static int jupiterCallback(brightonWindow *, int, int, float);
 static int midiCallback(brightonWindow *, int, int, float);
 static void jupiterSetSplit(guiSynth *);

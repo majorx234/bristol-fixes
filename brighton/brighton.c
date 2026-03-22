@@ -98,7 +98,7 @@ brightonApp *synthesisers[BRISTOL_SYNTHCOUNT];
 
 static char *defname = "bristol";
 
-void *eventMgr();
+void *eventMgr(void*);
 
 static int readMe = 0;
 static int gmc = 0;
@@ -130,7 +130,7 @@ extern int vuInterval;
 void printBrightonHelp(int);
 void printBrightonReadme();
 
-extern int brightonMidiInput(bristolMidiMsg *);
+extern int brightonMidiInput(bristolMidiMsg *, struct guiMain *);
 extern void brightonControlKeyInput(brightonWindow *, int, int);
 
 /*
@@ -143,8 +143,7 @@ static int asc, emStart = 0, midiHandle = -1;
 
 volatile sig_atomic_t ladiRequest = 0;
 
-static void
-savehandler()
+static void savehandler(int value)
 {
 	if (global.synths->flags & LADI_ENABLE && global.synths->ladimode)
 		ladiRequest = 1;
@@ -152,8 +151,7 @@ savehandler()
 		ladiRequest = 0;
 }
 
-static void
-loadhandler()
+static void loadhandler(int)
 {
 	if (global.synths->flags & LADI_ENABLE && global.synths->ladimode)
 		ladiRequest = 2;
@@ -161,8 +159,7 @@ loadhandler()
 		ladiRequest = 0;
 }
 
-static void
-printSummaryText()
+static void printSummaryText()
 {
 	int i;
 
@@ -176,8 +173,7 @@ printSummaryText()
 	printf("\n");
 }
 
-static void
-brightonFindEmulation(int argc, char **argv)
+static void brightonFindEmulation(int argc, char **argv)
 {
 	int argCount, i, found = -1;
 
@@ -274,8 +270,7 @@ brightonFindEmulation(int argc, char **argv)
 /*
  * Need to make this multithreaded?
  */
-int
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	int argCount = 1, i, j, logtype = BRISTOL_LOG_BRIGHTON;
 	pthread_t emgrThread, logthread;
@@ -1786,7 +1781,7 @@ main(int argc, char **argv)
 		 */
 		if (cli) {
 			if (brightonCLIcheck(&global) < 0)
-				cleanupBristol();
+				cleanupBristol(0);
 		}
 		/*
 		 * This was never operational anyway:
@@ -1821,8 +1816,7 @@ main(int argc, char **argv)
 	exit(global.controlfd < 0? 1: 0);
 }
 
-void *
-eventMgr()
+void * eventMgr(void* ptr)
 {
 	bristolMidiMsg msg;
 	int i = 50, r;
@@ -2046,17 +2040,15 @@ eventMgr()
 	pthread_exit(0);
 }
 
-void
-cleanout(void *id)
+void cleanout(void *id)
 {
 	if (id)
 		brightonRemoveInterface(id);
-	cleanupBristol();
+	cleanupBristol(0);
 	exit(4);
 }
 
-void
-clearout(int result)
+void clearout(int result)
 {
 	/*
 	 * This is not the right way to do things. We should request an exit and

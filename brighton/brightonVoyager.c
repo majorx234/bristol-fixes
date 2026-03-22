@@ -32,10 +32,10 @@
 static int voyagerInit();
 static int voyagerCallback(brightonWindow *, int, int, float);
 */
-static int voyagerConfigure();
+static int voyagerConfigure(brightonWindow *);
 
-extern int explorerInit();
-extern int explorerConfigure();
+extern int explorerInit(brightonWindow *);
+extern int explorerConfigure(brightonWindow *);
 extern int explorerCallback(brightonWindow *, int, int, float);
 
 static int midiCallback(brightonWindow *, int, int, float);

@@ -40,10 +40,10 @@
 static int initmem;
 static int exclude = 0;
 
-extern void *brightonmalloc();
+extern void *brightonmalloc(size_t);
 
-static int pro10Init();
-static int pro10Configure();
+static int pro10Init(brightonWindow *);
+static int pro10Configure(brightonWindow *);
 static int pro10Callback(brightonWindow * , int, int, float);
 static int lmCallback(brightonWindow * , int, int, float);
 static int ummodCallback(brightonWindow * , int, int, float);

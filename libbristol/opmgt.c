@@ -26,16 +26,15 @@
 
 #include "bristol.h"
 
-extern void bristolfree(char *);
+extern void bristolfree(void *);
 
-void
-bristolOPfree(bristolOP *operator)
+void bristolOPfree(bristolOP *operator)
 {
 #ifdef DEBUG
 	printf("bristolOPfree(%x)\n", operator);
 #endif
 
-	bristolfree((char *) operator);
+	bristolfree((void *) operator);
 }
 
 /*
@@ -70,8 +69,8 @@ bristolIOinit(bristolIO **io, int index, char *name, int rate, int samplecount)
 	(*io)->IOname = name;
 	(*io)->index = index;
 	(*io)->flags = 0;
-	(*io)->last = (struct BristolIO *) NULL;
-	(*io)->next = (struct BristolIO *) NULL;
+	(*io)->last = (struct bristolIO *) NULL;
+	(*io)->next = (struct bristolIO *) NULL;
 	(*io)->samplecnt = samplecount;
 	(*io)->samplerate = rate;
 
@@ -101,8 +100,8 @@ bristolOPinit(bristolOP **operator, int index, int samplecount)
 	 */
 	(*operator)->index = index;
 	(*operator)->flags = 0;
-	(*operator)->last = (struct BristolOP *) NULL; /* filled in by parent */
-	(*operator)->next = (struct BristolOP *) NULL; /* filled in by parent */
+	(*operator)->last = (struct bristolOP *) NULL; /* filled in by parent */
+	(*operator)->next = (struct bristolOP *) NULL; /* filled in by parent */
 
 	return(*operator);
 }

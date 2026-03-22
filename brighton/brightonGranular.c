@@ -33,8 +33,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int granularInit();
-static int granularConfigure();
+static int granularInit(brightonWindow *);
+static int granularConfigure(brightonWindow *);
 static int granularCallback(brightonWindow *, int, int, float);
 static int midiCallback(brightonWindow *, int, int, float);
 

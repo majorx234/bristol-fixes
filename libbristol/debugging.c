@@ -83,8 +83,7 @@ int bristolSpecPrint(bristolOPSpec *specs)
 	return(0);
 }
 
-int
-bristolOPprint(bristolOP *operator)
+int bristolOPprint(struct bristolOP *operator)
 {
 #ifdef DEBUG
 	printf("bristolOPprint(0x%08x)\n", operator);

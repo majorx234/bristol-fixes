@@ -28,8 +28,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int sAksInit();
-static int sAksConfigure();
+static int sAksInit(brightonWindow *);
+static int sAksConfigure(brightonWindow *);
 static int sAksCallback(brightonWindow *, int, int, float);
 
 extern guimain global;

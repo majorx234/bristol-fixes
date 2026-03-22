@@ -289,8 +289,8 @@ typedef struct BristolParamSpec {
 	float config_val;
 	int midi_adj_algo;
 	int midi_param;
-	float config_amount; 
-	float midi_amount; 
+	float config_amount;
+	float midi_amount;
 } bristolParamSpec;
 
 /*
@@ -322,7 +322,7 @@ typedef struct BristolParamSpec {
 #define BRISTOL_POLYMOD_CORRECT x020
 #define BRISTOL_CHANMOD_UNIQUE 0x40 /* Apply uniquely, or adjust configured */
 #define BRISTOL_POLYMOD_UNIQUE 0x80
-typedef union BristolModSpec {
+typedef union bristolModSpec {
 	unsigned int flags; /* type of modifiers to apply */
 	int channelMod; /* index into CHANMOD table */
 	int polyMod; /* index into PolyMod table */
@@ -330,14 +330,14 @@ typedef union BristolModSpec {
 	float pmGain;
 } bristolModSpec;
 
-typedef struct BristolOPParams {
+typedef struct bristolOPParams {
 	bristolParamSpec param[BRISTOL_PARAM_COUNT];
 } bristolOPParams;
 
 /*
  * Parameter management structures.
  */
-typedef struct BristolParam {
+typedef struct bristolParam {
 	int type;
 	int index;
 	bristolParamSpec value;
@@ -413,13 +413,13 @@ typedef struct BristolVoice {
 #define BRISTOL_DC 2
 #define BRISTOL_INPUT 4
 #define BRISTOL_OUTPUT 8
-typedef struct BristolIO {
+typedef struct bristolIO {
 	char *IOname;     /* Name of this IO function */
-	struct BristolOP *owner; /* Pointer to the operator that owns this IO */
+	struct bristolOP *owner; /* Pointer to the operator that owns this IO */
 	int index;        /* Index of this IO */
 	unsigned int flags;        /* diverse bits */
-	struct BristolIO *last; /* Previous operator on list */
-	struct BristolIO *next; /* Next operator on list */
+	struct bristolIO *last; /* Previous operator on list */
+	struct bristolIO *next; /* Next operator on list */
 	float *bufmem;    /* buffer memory for this IO */
 	int samplecnt;    /* number of samples in buffer */
 	int samplerate;   /* on this IO */
@@ -442,7 +442,7 @@ typedef int (*bristolAlgo)();
 #define BRISTOL_SLIDER 2
 #define BRISTOL_BUTTON 4
 #define BRISTOL_HIDE 8
-typedef struct BristolOPParam {
+typedef struct bristolOPParam {
 	char *pname;
 	char *description;
 	int type; /* need method of defining enumerations "Square, sine" etc, FFS */
@@ -451,7 +451,7 @@ typedef struct BristolOPParam {
 	unsigned int flags;
 } bristolOPParam;
 
-typedef struct BristolOPIO {
+typedef struct bristolOPIO {
 	char *ioname;
 	char *description;
 	int samplerate;
@@ -460,7 +460,7 @@ typedef struct BristolOPIO {
 	float *buf;
 } bristolOPIO;
 
-typedef struct BristolOPSpec {
+typedef struct bristolOPSpec {
 	char *opname;
 	char *description;
 	int pcount;
@@ -476,7 +476,7 @@ typedef struct BristolOPSpec {
 typedef struct BristolSound {
 	char *name;
 	int index; /* into operator list */
-	int (*operate)(struct BristolOP *, bristolVoice *,
+	int (*operate)(struct bristolOP *, bristolVoice *,
 		bristolOPParams *, void *);
 	/*unsigned char *param; Param structure for that op. */
 	bristolOPParams *param; /* Param structure for that op. */
@@ -487,11 +487,11 @@ typedef struct BristolSound {
 /*
  * Bristol Operator control structure.
  */
-typedef struct BristolOP {
+typedef struct bristolOP {
 	int	index;    /* Index of this OP */
 	unsigned int flags;    /* diverse bits */
-	struct BristolOP *next; /* Next operator on list */
-	struct BristolOP *last; /* Previous operator on list */
+	struct bristolOP *next; /* Next operator on list */
+	struct bristolOP *last; /* Previous operator on list */
 	/*
 	 * These are used for any information that is managed internally
 	 */
@@ -503,13 +503,13 @@ typedef struct BristolOP {
 	bristolAlgo init;
 	bristolAlgo destroy;
 	bristolAlgo reset;
-	int (*param)(struct BristolOP *, bristolOPParams *, unsigned char, float);
-	int (*operate)(struct BristolOP *, bristolVoice *, bristolOPParams *,
+	int (*param)(struct bristolOP *, bristolOPParams *, unsigned char, float);
+	int (*operate)(struct bristolOP *, bristolVoice *, bristolOPParams *,
 		void *);
 } bristolOP;
 
-extern bristolOP *bristolOPinit();
-extern bristolIO *bristolIOinit();
+extern bristolOP *bristolOPinit(bristolOP **, int, int);
+extern bristolIO *bristolIOinit(bristolIO **, int,  char *, int,  int);
 
 /*
  * This are mixflags: the system reserves the space 0xffff0000.00000000, and
@@ -680,7 +680,7 @@ typedef struct audioMain {
 	char *controldev;
 } audioMain;
 
-extern int cleanup();
+extern int cleanup(bristolOP *);
 
 extern Baudio *findBristolAudio(Baudio *, int, int);
 extern Baudio *findBristolAudioByChan(Baudio *, int);
@@ -691,7 +691,7 @@ extern int bufset(float *, float, int);
 extern void * bristolmalloc(size_t);
 extern void * bristolmalloc0(size_t);
 extern void bristolfree(void *);
-extern void bristolbzero();
+extern void bristolbzero(char *, int);
 
 extern void alterAllNotes();
 extern int fillFreqTable();

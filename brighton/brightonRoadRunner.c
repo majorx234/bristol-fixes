@@ -33,8 +33,8 @@ Check out
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int roadrunnerInit();
-static int roadrunnerConfigure();
+static int roadrunnerInit(brightonWindow *);
+static int roadrunnerConfigure(brightonWindow *);
 static int roadrunnerCallback(brightonWindow *, int, int, float);
 static int midiCallback(brightonWindow *, int, int, float);
 

@@ -26,8 +26,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int masterInit();
-static int masterConfigure();
+static int masterInit(brightonWindow *);
+static int masterConfigure(brightonWindow *);
 static int masterCallback(brightonWindow * , int, int, float);
 static int masterMidiCallback(brightonWindow * , int, int, float);
 

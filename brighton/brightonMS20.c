@@ -26,8 +26,8 @@
 #include "brightonMini.h"
 #include "brightoninternals.h"
 
-static int ms20Init();
-static int ms20Configure();
+static int ms20Init(brightonWindow *);
+static int ms20Configure(brightonWindow *);
 static int ms20Callback(brightonWindow *, int, int, float);
 
 extern guimain global;

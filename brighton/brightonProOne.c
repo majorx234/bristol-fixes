@@ -28,8 +28,8 @@
 
 static int initmem;
 
-static int pro1Init();
-static int pro1Configure();
+static int pro1Init(brightonWindow *);
+static int pro1Configure(brightonWindow *);
 static int pro1Callback(brightonWindow *, int, int, float);
 /*static int keyCallback(void *, int, int, float); */
 static int proOneKeyCallback(brightonWindow *, int, int, float);

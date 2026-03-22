@@ -53,8 +53,8 @@
 
 #include "bristolarpeggiation.h"
 
-static int cs80Init();
-static int cs80Configure();
+static int cs80Init(brightonWindow *);
+static int cs80Configure(brightonWindow *);
 static int cs80Callback(brightonWindow *, int, int, float);
 static int cs80panelswitch(brightonWindow *, int, int, float);
 static int midiCallback(brightonWindow *, int, int, float);
