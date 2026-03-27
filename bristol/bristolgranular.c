@@ -63,7 +63,7 @@ GLOBAL_STATE static float *bus9buf = (float *) NULL;
 GLOBAL_STATE static float *busbuf[9];
 
 extern int bristolGlobalController(struct bAudio *, u_char, u_char, float);
-extern int buildCurrentTable(baudio *, float);
+extern int buildCurrentTable(bAudio *, float);
 
 int
 granularGlobalController(bAudio *baudio, u_char operator,

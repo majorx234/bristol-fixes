@@ -146,7 +146,7 @@ bristolSound *sound[])
 		if ((audiomain->debuglevel & BRISTOL_DEBUG_MASK) > BRISTOL_DEBUG3)
 			printf("freeing existing sound structure\n");
 
-		freeSoundAlgo(baudio, index, sound[index]);
+		freeSoundAlgo(baudio, index, &sound[index]);
 	}
 
 	sound[index] = dropBristolOp(algo, audiomain->palette);
