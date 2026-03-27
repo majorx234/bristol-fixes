@@ -66,7 +66,7 @@ GLOBAL_STATE static float note_diff;
 
 #define DCO_WAVE_COUNT 6
 
-static void fillWave();
+static void fillWave(float *, int,  int);
 static void buildProphetWave(float *, float , float *, float , float *, float , float *);
 
 /*

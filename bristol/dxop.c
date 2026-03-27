@@ -66,7 +66,7 @@ GLOBAL_STATE static float note_diff;
 #define DXOP_ATTACK2	10
 #define DXOP_L2			11
 
-static void fillWave();
+static void fillWave(float *, int,  int);
 
 /*
  * Reset any local memory information.

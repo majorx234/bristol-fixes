@@ -58,7 +58,7 @@ static void buildJunoWave(float *, float, float *, float, float *);
 
 #define DCO_WAVE_COUNT 6
 
-static void fillWave();
+static void fillWave(float *, int,  int);
 
 /*
  * Reset any local memory information.

@@ -58,7 +58,7 @@ GLOBAL_STATE static float note_diff;
 
 #define LFO_WAVE_COUNT 6
 
-static void fillWave();
+static void fillWave(float *, int,  int);
 GLOBAL_STATE static float *bitbucket = NULL;
 
 /*

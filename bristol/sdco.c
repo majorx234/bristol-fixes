@@ -56,8 +56,8 @@ GLOBAL_STATE static float note_diff;
 
 #define SDCO_WAVE_COUNT 6
 
-static void fillWave();
-extern int convertWave();
+static void fillWave(float *, int,  int);
+extern int convertWave(sampleData *sd, char *file, int type, int loc, int layer);
 
 /*
  * Reset any local memory information.
@@ -123,8 +123,7 @@ static int reset(bristolOP *operator, bristolOPParams *param)
 /*
  * Alter an internal parameter of an operator.
  */
-static int param(bristolOP *operator, bristolOPParams *param,
-	unsigned char index, float value)
+static int param(bristolOP *operator, bristolOPParams *param, unsigned char index, float value)
 {
 #ifdef BRISTOL_DBG
 	printf("sdcoparam(%x, %x, %i, %f)\n", operator, param, index, value);
@@ -141,8 +140,9 @@ static int param(bristolOP *operator, bristolOPParams *param,
 		case 0:
 			/*
 			 * Build a new wave table?
+       * param.mem is cast here to float* because of homegen interface of fillWave
 			 */
-			fillWave(param->param[0].mem, (int) value);
+			fillWave((float*)param->param[0].mem, 0, (int) value);
 			break;
 		case 1:
 			/*
@@ -422,10 +422,12 @@ sdcoinit(bristolOP **operator, int index, int samplerate, int samplecount)
  * differences will have to apply apms.
  */
 static void
-fillWave(sampleData mem[], int type)
+fillWave(float* mem, int count, int type)
 {
+  // cast back to sampleData,
+  sampleData* mem_sample_data = (sampleData*)mem;
 #ifdef BRISTOL_DBG
-	printf("fillWave(%x, %i)\n", mem, type);
+	printf("fillWave(%x, %i)\n", mem_sample_data, type);
 #endif
 
 	switch (type) {
@@ -442,10 +444,10 @@ fillWave(sampleData mem[], int type)
 			 * sampler formats such as AKAI, Ensoniq, etc, where a soundfile
 			 * has a compound of multiple notes and layers.
 			 */
-			if (convertWave(mem, "/tmp/rhodespiano.raw", HINT_RHODES, 38, 1)
+			if (convertWave(mem_sample_data, "/tmp/rhodespiano.raw", HINT_RHODES, 38, 1)
 				< 0)
 				printf("issue loading rhodes piano sample\n");
-/*			if (convertWave(mem, "/tmp/rhodes.raw", HINT_RHODES, 39, 0) < 0) */
+/*			if (convertWave(mem_sample_data, "/tmp/rhodes.raw", HINT_RHODES, 39, 0) < 0) */
 /*				printf("issue loading rhodes forte samples\n"); */
 
 			break;

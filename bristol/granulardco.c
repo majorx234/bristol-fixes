@@ -97,7 +97,7 @@ GLOBAL_STATE static float samplerate;
 #define GDCO_WAVEFORM		10
 #define GDCO_BANKSEL		11
 
-static void fillWave();
+static void fillWave(float *, int,  int);
 
 /*
  * Reset any local memory information.
