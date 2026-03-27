@@ -873,11 +873,11 @@ connectengine(guimain *global)
 		(global->flags & BRISTOL_CONN_FORCE);
 
 	if ((global->controlfd = bristolMidiOpen(global->host,
-		flags, global->port, -1, brightonMidiInput, global)) < 0)
+		flags, global->port, -1, (int (*)(bristolMidiMsg *, void *))brightonMidiInput, global)) < 0)
 	{
 		printf("opening link to engine: %i\n", global->port);
 		if ((global->controlfd = bristolMidiOpen(global->host,
-			flags, global->port, -1, brightonMidiInput, global)) < 0)
+			flags, global->port, -1, (int (*)(bristolMidiMsg *, void *))brightonMidiInput, global)) < 0)
 			cleanupBristol(0);
 	} else
 		printf("%s already active (%i)\n", BRISTOL_ENGINE, global->controlfd);

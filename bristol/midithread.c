@@ -36,7 +36,7 @@ GLOBAL_STATE static char sem_short_name[32];
 GLOBAL_STATE extern int midiExitReq;
 
 extern int midiCheck();
-extern void initMidiRoutines();
+extern void initMidiRoutines(audioMain *, midiHandler *);
 extern void checkcallbacks(bristolMidiMsg *);
 
 GLOBAL_STATE extern audioMain audiomain;
@@ -94,8 +94,7 @@ midiThreadLoadReq(audioMain *audiomain)
 	audiomain->sessionfile = 0;
 }
 
-void
-midiThreadSaveReq(audioMain *audiomain)
+void midiThreadSaveReq(audioMain *audiomain)
 {
 	bristolMidiMsg midiMsg;
 
@@ -146,8 +145,7 @@ midiThreadSaveReq(audioMain *audiomain)
 }
 
 #ifndef BRISTOL_SEMAPHORE
-int
-midiMsgForwarder(bristolMidiMsg *msg)
+int midiMsgForwarder(bristolMidiMsg *msg)
 {
 	/*
 	 * Take bristol MIDI messages, write them into the forwarding path ring
@@ -162,8 +160,7 @@ midiMsgForwarder(bristolMidiMsg *msg)
 }
 #endif
 
-int
-midiMsgHandler(bristolMidiMsg *msg, audioMain *audiomain)
+int midiMsgHandler(bristolMidiMsg *msg, audioMain *audiomain)
 {
 	int event = (msg->command & ~MIDI_STATUS_MASK) >> 4;
 
@@ -206,6 +203,12 @@ midiMsgHandler(bristolMidiMsg *msg, audioMain *audiomain)
 	bristolMidiRoutines.bmr[event].callback(audiomain, msg);
 
 	return(0);
+}
+
+int midiMsgHandler_audiomain_wrap(bristolMidiMsg *msg, void *audiomain_raw)
+{
+    audioMain *audiomain = (audioMain *)audiomain_raw;
+    return midiMsgHandler(msg, audiomain);
 }
 
 GLOBAL_STATE extern int exitReq;
@@ -356,7 +359,7 @@ midiThread(audioMain *audiomain)
 			audiomain->flags
 				& (BRISTOL_MIDI_SEQ|BRISTOL_MIDI_ALSA|BRISTOL_MIDI_OSS)?
 				BRISTOL_REQ_SYSEX:BRISTOL_REQ_ALL,
-			midiMsgHandler, audiomain)) < 0)
+			midiMsgHandler_audiomain_wrap, audiomain)) < 0)
 	{
 		printf("Error opening control device, exiting MIDI thread\n");
 		audiomain->atReq = BRISTOL_REQSTOP;
@@ -371,7 +374,7 @@ midiThread(audioMain *audiomain)
 			(BRISTOL_MIDI_SEQ|BRISTOL_MIDI_ALSA|BRISTOL_MIDI_OSS))
 		&& ((audiomain->midiHandle
 			= bristolMidiOpen(device, flags|BRISTOL_RDONLY, -1, BRISTOL_REQ_NSX,
-				midiMsgHandler, audiomain)) < 0))
+				midiMsgHandler_audiomain_wrap, audiomain)) < 0))
 	{
 		printf("Error opening MIDI device %s/%i, exiting MIDI thread\n",
 			device, audiomain->midiHandle);

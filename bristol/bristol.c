@@ -52,6 +52,7 @@ extern void midiThreadLoadReq(audioMain *);
 extern void *midiThread(void *);
 extern void doNoteChanges(bristolVoice *);
 extern int bristolMidiTerminate();
+extern int midiMsgHandler_audiomain_wrap(bristolMidiMsg *, void *);
 
 pthread_t spawnThread(void * (*)(void *), int );
 
@@ -772,7 +773,8 @@ int main(int argc, char **argv)
 					if ((jh = bristolMidiOpen(regname,
 						(audiomain.flags & BRISTOL_JACK_DUAL)|
 						BRISTOL_CONN_JACK|BRISTOL_DUPLEX, -1,
-						BRISTOL_REQ_NSX, midiMsgHandler, audiomain)) < 0)
+						// BRISTOL_REQ_NSX, midiMsgHandler, audiomain)) < 0)
+						BRISTOL_REQ_NSX, midiMsgHandler_audiomain_wrap,  (void*)&audiomain)) < 0)
 						printf("requested JACK MIDI did not link up\n");
 					else {
 						if (audiomain.debuglevel)

@@ -1850,7 +1850,7 @@ void * eventMgr(void* ptr)
 		{
 			if ((midiHandle = bristolMidiOpen("brighton",
 				BRISTOL_CONN_SEQ|BRISTOL_RDONLY,
-				-1, -1, brightonMidiInput, &global)) < 0)
+				-1, -1, (int (*)(bristolMidiMsg *, void *))brightonMidiInput, &global)) < 0)
 				printf("Error opening MIDI device %s\n", "0.0");
 		}
 	}

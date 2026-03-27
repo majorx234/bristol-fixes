@@ -74,9 +74,11 @@ static char devname[64] = "localhost";
 /*
  * This is the generic code. Calls the desired (configured) drivers.
  */
-int bristolMidiOpen(char *dev, int flags, int chan, int msgs, int (*callback)(bristolMidiMsg*, struct guiMain *),
-void *param)
+//int bristolMidiOpen(char *dev, int flags, int chan, int msgs, int (*callback)(bristolMidiMsg*, struct guiMain *), void *param)
+int bristolMidiOpen(char *dev, int flags, int chan, int msgs, int (*callback_void)(bristolMidiMsg*, void *), void *param)
 {
+  // cast general midi callback (midiMsgsHandler) into specific one
+  int (*callback)(bristolMidiMsg*, struct guiMain *) = (int (*)(bristolMidiMsg*, struct guiMain *))callback_void;
 	int handle, devnum;
 
 	if (bmidi.flags & BRISTOL_BMIDI_DEBUG)

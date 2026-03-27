@@ -35,7 +35,7 @@
 struct bristolMidiMsg;
 struct guiMain;
 
-extern int bristolMidiOpen(char*, int, int, int, int(*)(struct bristolMidiMsg*, struct guiMain *), void*);
+extern int bristolMidiOpen(char*, int, int, int, int(*)(struct bristolMidiMsg*, void *), void*);
 extern int bristolMidiClose(int);
 extern int bristolMidiRead(int, struct bristolMidiMsg *);
 extern int bristolMidiRawWrite(int, struct bristolMidiMsg *, int);
@@ -258,7 +258,8 @@ typedef struct TableEntry {
 extern tableEntry defaultTable[DEF_TAB_SIZE];
 extern tableEntry gainTable[CONTROLLER_RANGE];
 
-typedef int (*midiHandlerRoutine)();
+struct audioMain;
+typedef int (*midiHandlerRoutine)(struct audioMain *, bristolMidiMsg *);
 
 typedef struct fTab {
 	float step;
