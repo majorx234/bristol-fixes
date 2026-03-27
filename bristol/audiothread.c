@@ -1136,7 +1136,7 @@ freePalette(audioMain *audiomain, bristolOP *palette[])
 //printf("Removed operator %s from %i at %x\n",
 //palette[i]->specs->opname, i, (size_t) palette[i]);
 
-			palette[i]->destroy(palette[i], NULL);
+			palette[i]->destroy(palette[i]);
 
 			palette[i] = (bristolOP *) NULL;
 		}

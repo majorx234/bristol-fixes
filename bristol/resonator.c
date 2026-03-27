@@ -73,7 +73,7 @@ static int destroy(bristolOP *operator)
 /*
  * Reset any local memory information.
  */
-static int reset(bristolOP *operator, bristolRES *local)
+static int reset(bristolOP *operator, bristolOPParams *param)
 {
 #ifdef BRISTOL_DBG
 	printf("reset(%x)\n", operator);

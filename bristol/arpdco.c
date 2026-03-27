@@ -76,7 +76,7 @@ GLOBAL_STATE static float *sbuf = NULL;
 /*
  * Reset any local memory information.
  */
-static int destroy(bristolOP *operator, bristolOPParams *params)
+static int destroy(bristolOP *operator)
 {
 #ifdef BRISTOL_DBG
 	printf("destroy(%x)\n", operator);

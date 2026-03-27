@@ -506,7 +506,7 @@ typedef struct bristolOP {
 	 * A number of routines called to manage the operator
 	 */
 	bristolAlgo init;
-	bristolAlgo destroy;
+	bristolAlgo1 destroy;
 	bristolAlgo reset;
 	int (*param)(struct bristolOP *, bristolOPParams *, unsigned char, float);
 	int (*operate)(struct bristolOP *, bristolVoice *, bristolOPParams *,
